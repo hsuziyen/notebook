@@ -1,18 +1,30 @@
 <template>
   <div id="app">
     <div class="container">
+<a v-for="n in filterSearch" :href="n.url">{{ n.title }}</a>
       <h1 v-text="text"></h1>
-      <input type="text" v-model="newItem" v-on:keyup.enter="addNew" />
-      <button v-on:click="addNew">Add</button>
+項目文字欄：<input type="text" v-model="newItem" v-on:keyup.enter="addNew" />
+修改Title:文字欄：<input type="text" v-model="text" v-on:keyup.enter="addNew" />
+      <button v-on:click="addNew">請按按鈕新增項目</button>
+<button v-on:click="addNew">請按按鈕查詢列表項目</button>
       <ul>
         <li v-for="(item, index) in items">
           <span v-bind:class="{finished: item.isFinished}">{{item.label}}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)" class="func">delete</span>
         </li>
+下拉選單欄：<select id="dropDown" size="1">
+  <option v-for="option in options" v-bind:value="option.value">
+    {{ option.text }}
+  </option>
+</select>
+搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search"/>
+<a v-for="n in filterSearch" :href="n.url">{{ n.title }}</a>
+<div>{{msg | upper}}</div>
+<div v-bind:id="id | formatId"></div>
       </ul>
       <div v-show="hasData" v-on:click="del" class="delAll">
-        Delete All
+ Copyright @2020 Hello Vue! Web Design By中國科大實習生1061461048ChihYen_Hsu製作
       </div>
     </div>
   </div>
@@ -20,16 +32,18 @@
 
 <script>
 import Store from './store';
+
 export default {
   name: 'app',
   mounted() {
-    this.hasData = this.items && this.items.length ? true : false;
+    this.hasData = this.items && this.items.length ? true : true;
   },
   data() {
     return {
-      text: 'Todo List',
+      text: 'HelloVue!',
       items: Store.fetch(),
       newItem: '',
+	search: '',
       hasData: false
     }
   },
@@ -37,7 +51,7 @@ export default {
     items: {
       handler(items) {
         Store.save(items);
-        this.hasData = this.items && this.items.length ? true : false;
+        this.hasData = this.items && this.items.length ? true : true;
       },
       deep: true
     }
@@ -53,23 +67,281 @@ export default {
       if (!this.items) {
         this.items = []
       }
-      this.items.push({label: this.newItem, isFinished: false});
+      this.items.push({label: this.newItem, isFinished: true});
       this.newItem = '';
     },
     del() {
       this.items = null;
     }
   },
-  components: {}
+  components: {
+filterSearch() {
+    return this.news.filter(searchResult => searchResult.title.match(this.searchWords));
+  }
+}
 }
 </script>
-
+const app = new Vue ({
+  el: '#app',
+  data: {
+    search: '',
+    postList : [
+      new Post(
+        'Vue.js', 
+        'https://vuejs.org/', 
+        'Chris', 
+        'https://vuejs.org//images/logo.png'
+      ),
+      new Post(
+        'React.js', 
+        'https://facebook.github.io/react/', 
+        'Tim',
+        'https://daynin.github.io/clojurescript-presentation/img/react-logo.png'
+      ),
+      new Post(
+        'Angular.js', 
+        'https://angularjs.org/', 
+        'Sam', 
+        'https://angularjs.org/img/ng-logo.png'
+      ),
+      new Post(
+        'Ember.js', 
+        'http://emberjs.com/', 
+        'Rachel',
+        'http://www.gravatar.com/avatar/0cf15665a9146ba852bf042b0652780a?s=200'
+      ),
+      new Post(
+        'Meteor.js', 
+        'https://www.meteor.com/', 
+        'Chris', 
+        'http://hacktivist.in/introduction-to-nodejs-mongodb-meteor/img/meteor.png'
+      ),
+      new Post(
+        'Aurelia', 
+        'http://aurelia.io/', 
+        'Tim',
+        'https://cdn.auth0.com/blog/aurelia-logo.png'
+      ),
+      new Post(
+        'Node.js', 
+        'https://nodejs.org/en/', 
+        'A. A. Ron',
+        'https://code-maven.com/img/node.png'
+      ),
+      new Post(
+        'Pusher', 
+        'https://pusher.com/', 
+        'Alex', 
+        'https://avatars1.githubusercontent.com/u/739550?v=3&s=400'
+      ),
+      new Post(
+        'Feathers.js', 
+        'http://feathersjs.com/', 
+        'Chuck',
+        'https://cdn.worldvectorlogo.com/logos/feathersjs.svg'
+      ),
+]
+class Post {
+  constructor(title, link, author, img) {
+    this.title = title;
+    this.link = link;
+    this.author = author;
+    this.img = img;
+  computed: {
+    filteredList() {
+      return this.postList.filter(post => {
+        return post.title.toLowerCase().includes(this.search.toLowerCase())
+      })
+    }
+  }
+})
 <style>
 .container {
   text-align: center;
 }
+html, body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 16px;
+  margin-bottom: 16px;
+display:flex;
+  margin: 0;
+ background: -webkit-linear-gradient(left top, #DDD, #777); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, #DDD, #777); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, #DDD, #777); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, #DDD, #777); /* Standard syntax */
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+font-size:24px;
+}
+h1,
+a:link,
+a:visited { /*set dfault style for all links*/
+  color: #444;
+  font-weight: bold;
+}
+a:hover,
+a:active { /*set ux style for all links*/
+  color: #F58025;
+}
+div li{
+  color:black;
+font-size: 24px;
+}
+ .search-wrapper {
+    position: relative;
+    label {
+      position: absolute;
+      font-size: 12px;
+      color: rgba(10,20,30,.50);
+      top: 8px;
+      left: 12px;
+      z-index: -1;
+      transition: .15s all ease-in-out;
+    }
+    input {
+      padding: 4px 12px;
+      color: rgba(20,10,10,.70);
+      border: 1px solid rgba(0,0,0,.12);
+      transition: .15s all ease-in-out;
+      background: white;
+caret-color:green;
+}
+.wrapper {
+    display: flex;
+    max-width: 444px;
+    flex-wrap: wrap;
+    padding-top: 12px;
+  }
+.card {
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    max-width: 124px;
+    margin: 12px;
+    transition: .15s all ease-in-out;
+    &:hover {
+      transform: scale(1.1);
+    }
+    a {
+      text-decoration: none;
+      padding: 12px;
+      color: #03A9F4;
+      font-size: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      img {
+        height: 100px;
+      }
+      small {
+        font-size: 10px;
+        padding: 4px;
+      }
+    }
+  }
+h2
+{
+ text-align:center;
+  padding:20px 0px;
+  font-family:Verdana;
+  color:white;
+  font-weight:normal;
+}
+#dropDown
+{
+  width:90%;
+  height:40px;
+  border:none;
+  box-shadow: 0px 0px 5px 1px grey;                   
+  border-radius: 10px;
+  outline:none;
+  margin-bottom:10px;
+  margin: auto;
+}
+button
+            {
+                width:150px;  
+                padding: 10px;
+                border: none;
+                position:relative;
+                bottom:-10px;
+                background-color:rgba(155, 89, 182,0.8);
+                color: white;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                border-radius: 6px;
+                border-bottom: 5px solid rgba(142, 68, 173,1.0);
+              outline:none;
+              margin:10px;
+            }
+        
+
+            button:active {
+                background-color:rgba(155, 89, 182,0.7);
+                border-bottom: 1px solid rgba(142, 68, 173,1.0);
+                transform: translateY(4px);
+}
+li { /*hide <li> elements when added*/
+  background: #DDD;
+  padding: 5px;
+  margin: 0;/*25px*/
+  height: 0;
+  overflow: hidden;
+}
+li:hover { /*<li> ux behavior*/
+  background: #EEE;
+  border-left: 5px solid #F58025;
+  border-right: 5px solid #F58025;
+  margin: 25px 20px 25px 20px; /*this shrinks the sides the the borders won't distort*/
+}
+li.show { /*used to trigger the .swing animation*/
+  height: auto;
+  margin: 25px;
+}
+.swing li { /*dissapear animation*/
+  opacity: 0;
+  transform: rotateX(-90deg);
+  transition: all 0.5s;
+}
+.swing li.show { /*show animation*/
+  opacity: 1;
+  transform: none;
+  transition: all 0.5s;
+}
+.container,
+.center-block { /*sets the width limit for larger screens*/
+  max-width: 700px;
+}
+.buttonFlex
+{
+   display:flex;
+  flex-wrap:wrap;
+  justify-content:space-around;
+  align-items:center;
+  width:90%;
+  margin: 0px auto 20px;
+}
+option
+{
+  padding:2px;
+  text-align:center;
+  font-size:16px;
+}
+.hotpink {
+    background: hotpink;
+  }
+
+  .green {
+    background: green;
+  }
+.box {
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgba(0,0,0,.12);
+  }
+}
 input {
-  box-shadow: 0 0 8px rgb(150, 104, 219);
+  box-shadow: 0 0 8px rgb(250, 204, 219);
   border: none;
 }
 li {
@@ -78,8 +350,10 @@ li {
 button {
   border-radius: 14px;
   color: black;
-  box-shadow: 0 0 2px rgb(70, 120, 231);
-  background: none;
+  color: red;
+  color: blue;
+  box-shadow: 0 0 2px rgb(200, 220, 231);
+  background: orange;
 }
 span.func {
   cursor: pointer;
@@ -93,18 +367,66 @@ ul {
   text-align: left;
   margin-left: 50px;
 }
+
+input[type="text"]:focus { /*change the bootstrap text box glow color*/
+  border-color: #00aaa6;
+  box-shadow:  0 0 8px #00aaa6;
+  outline: 0 none;
+}
+.wrapper
+{
+  background-color:rgba(46, 204, 113,0.6);
+  margin:auto;
+  width:50vw;
+  display:flex;
+  flex-direction:column;
+  padding:0px 10px ;
+  margin-top:4%;
+  border-radius:1rem;
+}
+.btn { /*default button bahavior (modifies bootstrap defaults)*/
+  background-color: #00aaa6;
+  color: #444;
+  font-weight: bold;
+}
+.btn:hover,
+.btn:focus{ /*ux button bahavior (modifies bootstrap defaults)*/
+  background-color: #F58025;
+}
+p { /*This and the next reduce <li> shifting during the mouseover animation*/
+  margin-left: 5px;
+  margin-right: 5px;
+}
+li:hover p { /*as above*/
+  margin-left: 0px;
+  margin-right: 0px;
+}
+ul a:link,
+ul a:visited { /*<li> are nested within <a>, so this controlls the defualt <li> behavior*/
+  text-decoration: none;
+  color: #444;
+}
+ul a:hover,
+ul a:active{ /*as above, controlls the ux <li> behavior*/
+  text-decoration: none;
+  color: #00aaa6;
+}
 .finished {
   text-decoration: line-through;
 }
 div.delAll {
-  text-decoration: underline;
+  text-decoration:none;
 }
-#app {
+div#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /*text-align: center;*/
   color: #2c3e50;
   margin-top: 60px;
+display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-</style>0
+</style>
