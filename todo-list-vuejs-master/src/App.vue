@@ -174,7 +174,7 @@ display:flex;
   background: linear-gradient(to bottom right, #DDD, #777); /* Standard syntax */
   background-repeat: no-repeat;
   background-attachment: fixed;
-font-size:24px;
+font-size:20px;
 }
 h1,
 a:link,
@@ -185,10 +185,6 @@ a:visited { /*set dfault style for all links*/
 a:hover,
 a:active { /*set ux style for all links*/
   color: #F58025;
-}
-div li{
-  color:black;
-font-size: 24px;
 }
  .search-wrapper {
     position: relative;
