@@ -3,8 +3,8 @@
     <div class="container">
 <a v-for="n in filterSearch" :href="n.url">{{ n.title }}</a>
       <h1 v-text="text"></h1>
-項目文字欄：<input type="text" v-model="newItem" v-on:keyup.enter="addNew" />
-修改Title:文字欄：<input type="text" v-model="text" v-on:keyup.enter="addNew" />
+項目文字欄：<input type="text" v-model="newItem"placeholder="Search the text web" v-on:keyup.enter="addNew" />
+修改Title欄：<input type="text" v-model="text"placeholder="Search title text web" v-on:keyup.enter="addNew" />
       <button v-on:click="addNew">請按按鈕新增項目</button>
 <button v-on:click="addNew">請按按鈕查詢列表項目</button>
       <ul>
@@ -13,12 +13,12 @@
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)" class="func">delete</span>
         </li>
-下拉選單欄：<select id="dropDown" size="1">
+下拉選單欄：<select v-model="select" >
   <option v-for="option in options" v-bind:value="option.value">
     {{ option.text }}
   </option>
 </select>
-搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search"/>
+搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search seleced the web"/>
 <a v-for="n in filterSearch" :href="n.url">{{ n.title }}</a>
 <div>{{msg | upper}}</div>
 <div v-bind:id="id | formatId"></div>
@@ -40,10 +40,9 @@ export default {
   },
   data() {
     return {
-      text: 'HelloVue!',
+      text: 'Hello Vue!',
       items: Store.fetch(),
       newItem: '',
-	search: '',
       hasData: false
     }
   },
@@ -56,7 +55,7 @@ export default {
       deep: true
     }
   },
-  methods: {
+   methods: {
     toggle(item) {
       item.isFinished = !item.isFinished;
     },
@@ -67,23 +66,22 @@ export default {
       if (!this.items) {
         this.items = []
       }
-      this.items.push({label: this.newItem, isFinished: true});
+      this.items.push({label: this.newItem, isFinished: false});
       this.newItem = '';
     },
     del() {
       this.items = null;
     }
   },
-  components: {
-filterSearch() {
+ components: {
+ filterSearch() {
     return this.news.filter(searchResult => searchResult.title.match(this.searchWords));
-  }
+}
 }
 }
 </script>
 const app = new Vue ({
-  el: '#app',
-  data: {
+  el: '#divapp',
     search: '',
     postList : [
       new Post(
@@ -140,7 +138,6 @@ const app = new Vue ({
         'Chuck',
         'https://cdn.worldvectorlogo.com/logos/feathersjs.svg'
       ),
-]
 class Post {
   constructor(title, link, author, img) {
     this.title = title;
@@ -152,9 +149,15 @@ class Post {
       return this.postList.filter(post => {
         return post.title.toLowerCase().includes(this.search.toLowerCase())
       })
-    }
+}
+class Post {
+  constructor(title, link, author, img) {
+    this.title = title;
+    this.link = link;
+    this.author = author;
+    this.img = img;
   }
-})
+}
 <style>
 .container {
   text-align: center;
@@ -175,17 +178,10 @@ display:flex;
   background-repeat: no-repeat;
   background-attachment: fixed;
 font-size:20px;
+  line-height: 1.5em;
+font-family: 'Helvetica Neue', sans-serif;
 }
-h1,
-a:link,
-a:visited { /*set dfault style for all links*/
-  color: #444;
-  font-weight: bold;
-}
-a:hover,
-a:active { /*set ux style for all links*/
-  color: #F58025;
-}
+
  .search-wrapper {
     position: relative;
     label {
@@ -236,14 +232,6 @@ caret-color:green;
       }
     }
   }
-h2
-{
- text-align:center;
-  padding:20px 0px;
-  font-family:Verdana;
-  color:white;
-  font-weight:normal;
-}
 #dropDown
 {
   width:90%;
@@ -255,23 +243,6 @@ h2
   margin-bottom:10px;
   margin: auto;
 }
-button
-            {
-                width:150px;  
-                padding: 10px;
-                border: none;
-                position:relative;
-                bottom:-10px;
-                background-color:rgba(155, 89, 182,0.8);
-                color: white;
-                font-family: Verdana, Geneva, Tahoma, sans-serif;
-                border-radius: 6px;
-                border-bottom: 5px solid rgba(142, 68, 173,1.0);
-              outline:none;
-              margin:10px;
-            }
-        
-
             button:active {
                 background-color:rgba(155, 89, 182,0.7);
                 border-bottom: 1px solid rgba(142, 68, 173,1.0);
