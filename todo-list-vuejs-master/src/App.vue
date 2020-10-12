@@ -32,7 +32,6 @@
 
 <script>
 import Store from './store';
-
 export default {
   name: 'app',
   mounted() {
@@ -80,84 +79,7 @@ export default {
 }
 }
 </script>
-const app = new Vue ({
-  el: '#divapp',
-    search: '',
-    postList : [
-      new Post(
-        'Vue.js', 
-        'https://vuejs.org/', 
-        'Chris', 
-        'https://vuejs.org//images/logo.png'
-      ),
-      new Post(
-        'React.js', 
-        'https://facebook.github.io/react/', 
-        'Tim',
-        'https://daynin.github.io/clojurescript-presentation/img/react-logo.png'
-      ),
-      new Post(
-        'Angular.js', 
-        'https://angularjs.org/', 
-        'Sam', 
-        'https://angularjs.org/img/ng-logo.png'
-      ),
-      new Post(
-        'Ember.js', 
-        'http://emberjs.com/', 
-        'Rachel',
-        'http://www.gravatar.com/avatar/0cf15665a9146ba852bf042b0652780a?s=200'
-      ),
-      new Post(
-        'Meteor.js', 
-        'https://www.meteor.com/', 
-        'Chris', 
-        'http://hacktivist.in/introduction-to-nodejs-mongodb-meteor/img/meteor.png'
-      ),
-      new Post(
-        'Aurelia', 
-        'http://aurelia.io/', 
-        'Tim',
-        'https://cdn.auth0.com/blog/aurelia-logo.png'
-      ),
-      new Post(
-        'Node.js', 
-        'https://nodejs.org/en/', 
-        'A. A. Ron',
-        'https://code-maven.com/img/node.png'
-      ),
-      new Post(
-        'Pusher', 
-        'https://pusher.com/', 
-        'Alex', 
-        'https://avatars1.githubusercontent.com/u/739550?v=3&s=400'
-      ),
-      new Post(
-        'Feathers.js', 
-        'http://feathersjs.com/', 
-        'Chuck',
-        'https://cdn.worldvectorlogo.com/logos/feathersjs.svg'
-      ),
-class Post {
-  constructor(title, link, author, img) {
-    this.title = title;
-    this.link = link;
-    this.author = author;
-    this.img = img;
-  computed: {
-    filteredList() {
-      return this.postList.filter(post => {
-        return post.title.toLowerCase().includes(this.search.toLowerCase())
-      })
-}
-class Post {
-  constructor(title, link, author, img) {
-    this.title = title;
-    this.link = link;
-    this.author = author;
-    this.img = img;
-  }
-}
+
 <style>
 .container {
   text-align: center;
@@ -175,13 +97,11 @@ display:flex;
   background: -o-linear-gradient(bottom right, #DDD, #777); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(bottom right, #DDD, #777); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to bottom right, #DDD, #777); /* Standard syntax */
-  background-repeat: no-repeat;
   background-attachment: fixed;
 font-size:20px;
   line-height: 1.5em;
 font-family: 'Helvetica Neue', sans-serif;
 }
-
  .search-wrapper {
     position: relative;
     label {
@@ -190,7 +110,6 @@ font-family: 'Helvetica Neue', sans-serif;
       color: rgba(10,20,30,.50);
       top: 8px;
       left: 12px;
-      z-index: -1;
       transition: .15s all ease-in-out;
     }
     input {
@@ -297,7 +216,6 @@ option
 .hotpink {
     background: hotpink;
   }
-
   .green {
     background: green;
   }
@@ -334,11 +252,9 @@ ul {
   text-align: left;
   margin-left: 50px;
 }
-
 input[type="text"]:focus { /*change the bootstrap text box glow color*/
   border-color: #00aaa6;
   box-shadow:  0 0 8px #00aaa6;
-  outline: 0 none;
 }
 .wrapper
 {
