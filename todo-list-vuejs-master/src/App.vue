@@ -81,9 +81,6 @@ export default {
 </script>
 
 <style>
-.container {
-  text-align: center;
-}
 html, body {
   display: flex;
   align-items: center;
@@ -91,7 +88,6 @@ html, body {
   flex-direction: column;
   margin-top: 16px;
   margin-bottom: 16px;
-display:flex;
   margin: 0;
  background: -webkit-linear-gradient(left top, #DDD, #777); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(bottom right, #DDD, #777); /* For Opera 11.1 to 12.0 */
@@ -102,24 +98,20 @@ font-size:20px;
   line-height: 1.5em;
 font-family: 'Helvetica Neue', sans-serif;
 }
- .search-wrapper {
+.container {
+  text-align: center;
+}
+.search-wrapper {
     position: relative;
     label {
       position: absolute;
       font-size: 12px;
-      color: rgba(10,20,30,.50);
+      color: rgba(0,0,0,.50);
       top: 8px;
       left: 12px;
+      z-index: -1;
       transition: .15s all ease-in-out;
     }
-    input {
-      padding: 4px 12px;
-      color: rgba(20,10,10,.70);
-      border: 1px solid rgba(0,0,0,.12);
-      transition: .15s all ease-in-out;
-      background: white;
-caret-color:green;
-}
 .wrapper {
     display: flex;
     max-width: 444px;
@@ -216,7 +208,7 @@ option
 .hotpink {
     background: hotpink;
   }
-  .green {
+.green {
     background: green;
   }
 .box {
@@ -228,6 +220,11 @@ option
 input {
   box-shadow: 0 0 8px rgb(250, 204, 219);
   border: none;
+padding: 4px 12px;
+      color: rgba(0,0,0,.70);
+      border: 1px solid rgba(0,0,0,.12);
+      transition: .15s all ease-in-out;
+      background: white;
 }
 li {
   margin-top: 9px;
@@ -235,10 +232,11 @@ li {
 button {
   border-radius: 14px;
   color: black;
-  color: red;
-  color: blue;
-  box-shadow: 0 0 2px rgb(200, 220, 231);
+color: red;
+color: blue;
+  box-shadow: 0 0 2px rgb(270, 220, 231);
   background: orange;
+
 }
 span.func {
   cursor: pointer;
@@ -298,7 +296,7 @@ ul a:active{ /*as above, controlls the ux <li> behavior*/
   text-decoration: line-through;
 }
 div.delAll {
-  text-decoration:none;
+  text-decoration: none;
 }
 div#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -306,10 +304,10 @@ div#app {
   -moz-osx-font-smoothing: grayscale;
   /*text-align: center;*/
   color: #2c3e50;
-  margin-top: 60px;
 display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 60px;
 }
 </style>
