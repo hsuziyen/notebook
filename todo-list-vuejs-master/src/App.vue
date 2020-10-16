@@ -29,11 +29,12 @@
     </div>
   </div>
 </template>
-
+var vm = new Vue({
+vm.message = 'Hello!'
 <script>
 import Store from './store';
 export default {
-  name: 'app',
+  el: '#app',
   mounted() {
     this.hasData = this.items && this.items.length ? true : true;
   },
@@ -42,7 +43,11 @@ export default {
       text: 'Hello Vue!',
       items: Store.fetch(),
       newItem: '',
-      hasData: false
+ search: '',
+seleced:'',
+msg:'',
+postList: '',
+      hasData: true
     }
   },
   watch: {
@@ -55,31 +60,36 @@ export default {
     }
   },
    methods: {
-    toggle(item) {
+    toggle(items) {
       item.isFinished = !item.isFinished;
     },
-    addNew() {
+    addNew(items) {
       if (this.newItem.trim() == '') {
         return;
       }
       if (!this.items) {
         this.items = []
       }
-      this.items.push({label: this.newItem, isFinished: false});
+      this.items.push({label: this.newItem, isFinished: true});
       this.newItem = '';
     },
     del() {
       this.items = null;
     }
   },
- components: {
+components: {
  filterSearch() {
     return this.news.filter(searchResult => searchResult.title.match(this.searchWords));
 }
 }
 }
 </script>
-
+class Post {
+  constructor(title, link, author, img) {
+    this.title = title;
+    this.link = link;
+    this.author = author;
+    this.img = img;
 <style>
 html, body {
   display: flex;
