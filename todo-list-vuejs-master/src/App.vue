@@ -29,8 +29,6 @@
     </div>
   </div>
 </template>
-var vm = new Vue({
-vm.message = 'Hello!'
 <script>
 import Store from './store';
 export default {
