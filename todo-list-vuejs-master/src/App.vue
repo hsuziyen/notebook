@@ -3,7 +3,7 @@
     <div class="container">
 <a v-for="n in filterSearch" :href="n.url">{{ n.title }}</a>
       <h1 v-text="text"></h1>
-項目文字欄：<input type="text" v-model="newItem"placeholder="Search the text web" v-on:keyup.enter="addNew" />
+ 項目文字欄：<input type="text" v-model="newItem"placeholder="Search the text web" v-on:keyup.enter="addNew" />
 修改Title欄：<input type="text" v-model="text"placeholder="Search title text web" v-on:keyup.enter="addNew" />
       <button v-on:click="addNew">請按按鈕新增項目</button>
 <button v-on:click="addNew">請按按鈕查詢列表項目</button>
@@ -24,15 +24,17 @@
 <div v-bind:id="id | formatId"></div>
       </ul>
       <div v-show="hasData" v-on:click="del" class="delAll">
- Copyright @2020 Hello Vue! Web Design By中國科大實習生1061461048ChihYen_Hsu製作
+        Copyright @2020 Hello Vue! Web Design By中國科大實習生1061461048ChihYen_Hsu製作
       </div>
     </div>
   </div>
 </template>
+
 <script>
 import Store from './store';
+
 export default {
-  el: '#app',
+  name: 'app',
   mounted() {
     this.hasData = this.items && this.items.length ? true : true;
   },
@@ -41,10 +43,6 @@ export default {
       text: 'Hello Vue!',
       items: Store.fetch(),
       newItem: '',
- search: '',
-seleced:'',
-msg:'',
-postList: '',
       hasData: true
     }
   },
@@ -57,11 +55,11 @@ postList: '',
       deep: true
     }
   },
-   methods: {
-    toggle(items) {
+  methods: {
+    toggle(item) {
       item.isFinished = !item.isFinished;
     },
-    addNew(items) {
+    addNew() {
       if (this.newItem.trim() == '') {
         return;
       }
@@ -75,19 +73,14 @@ postList: '',
       this.items = null;
     }
   },
-components: {
+  components: {
  filterSearch() {
     return this.news.filter(searchResult => searchResult.title.match(this.searchWords));
 }
 }
 }
 </script>
-class Post {
-  constructor(title, link, author, img) {
-    this.title = title;
-    this.link = link;
-    this.author = author;
-    this.img = img;
+
 <style>
 html, body {
   display: flex;
@@ -242,6 +235,7 @@ button {
   color: black;
 color: red;
 color: blue;
+color: purple;
   box-shadow: 0 0 2px rgb(270, 220, 231);
   background: orange;
 
@@ -306,8 +300,9 @@ ul a:active{ /*as above, controlls the ux <li> behavior*/
 div.delAll {
   text-decoration: none;
 }
-div#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+
+#app {
+   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /*text-align: center;*/
