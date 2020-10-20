@@ -60,19 +60,14 @@ export default {
       item.isFinished = !item.isFinished;
     },
     addNew() {
-      if (this.newItem.trim() ==1) {
-        return index;
+      if (this.newItem.trim() == '') {
+        return;
       }
       if (!this.items) {
-        this.items = [index]
+        this.items = []
       }
       this.items.push({label: this.newItem, isFinished: true});
       this.newItem = '';
-    setTimeout(function() { //wait for animation to complete (otherwise the following will inturrupt it)
-      $("#output").html(""); //eliminate all <ul> content (needed to return to initial state)
-    }, 500);
-    $("#Term").val(""); //reset the text input box to inital (blank) value
-    $("#Term").blur(); //these 2 lines remove :active and :focus from their respective elements
     },
     del() {
       this.items = null;
