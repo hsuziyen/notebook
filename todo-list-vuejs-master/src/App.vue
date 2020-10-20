@@ -43,7 +43,7 @@ export default {
       text: 'Hello Vue!',
       items: Store.fetch(),
       newItem: '',
-      hasData: false
+      hasData: true
     }
   },
   watch: {
