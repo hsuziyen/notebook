@@ -36,14 +36,14 @@ import Store from './store';
 export default {
   name: 'app',
   mounted() {
-    this.hasData = this.items && this.items.length ? true : true;
+    this.hasData = this.items && this.items.length ? true : false;
   },
   data() {
     return {
       text: 'Hello Vue!',
       items: Store.fetch(),
       newItem: '',
-      hasData: true
+      hasData: false
     }
   },
   watch: {
@@ -60,14 +60,19 @@ export default {
       item.isFinished = !item.isFinished;
     },
     addNew() {
-      if (this.newItem.trim() == '') {
-        return;
+      if (this.newItem.trim() ==1) {
+        return index;
       }
       if (!this.items) {
-        this.items = []
+        this.items = [index]
       }
       this.items.push({label: this.newItem, isFinished: true});
       this.newItem = '';
+    setTimeout(function() { //wait for animation to complete (otherwise the following will inturrupt it)
+      $("#output").html(""); //eliminate all <ul> content (needed to return to initial state)
+    }, 500);
+    $("#Term").val(""); //reset the text input box to inital (blank) value
+    $("#Term").blur(); //these 2 lines remove :active and :focus from their respective elements
     },
     del() {
       this.items = null;
@@ -107,7 +112,7 @@ font-family: 'Helvetica Neue', sans-serif;
     label {
       position: absolute;
       font-size: 12px;
-      color: rgba(0,0,0,.50);
+      color: rgba(0,0,0,50);
       top: 8px;
       left: 12px;
       z-index: -1;
@@ -235,7 +240,6 @@ button {
   color: black;
 color: red;
 color: blue;
-color: purple;
   box-shadow: 0 0 2px rgb(270, 220, 231);
   background: orange;
 
