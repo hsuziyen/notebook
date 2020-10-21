@@ -44,7 +44,6 @@ class Post {
 export default {
   el: '#app',
   mounted() {
-setTimeout(()=> this.filters = [], 3000)
     this.hasData = this.items && this.items.length ? true : true;
   },
   data() {
@@ -52,13 +51,9 @@ setTimeout(()=> this.filters = [], 3000)
       text: 'Hello Vue!',
       items: Store.fetch(),
       newItem: '',
-     parentid:'',
-          childrenid: '',
-          childrens: '',
           showResult:'',
 filters: '',
  options: '',
-        selectedValue: '',
 postList : '',
  hasData: true
     }
