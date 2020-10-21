@@ -16,7 +16,6 @@
 下拉選單欄：<select v-model="select" >
   <option v-for="option in options" v-bind:value="option.value">
     {{ option.text }}
-<button type="button" v-on:click.prevent="MySubmit">送出</button>
   </option>
 </select>
 搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search seleced the web"/>
@@ -42,20 +41,19 @@ class Post {
 }
 }
 export default {
-  el: '#app',
+  el: 'app',
   mounted() {
     this.hasData = this.items && this.items.length ? true : true;
   },
   data() {
-    return {   
+    return {
       text: 'Hello Vue!',
       items: Store.fetch(),
       newItem: '',
-          showResult:'',
-filters: '',
- options: '',
-postList : '',
- hasData: true
+filters: null,
+        selectedValue: null,
+ Index: 0,
+      hasData: true
     }
   },
   watch: {
@@ -70,20 +68,32 @@ postList : '',
   methods: {
     toggle(item) {
       item.isFinished = !item.isFinished;
+document.addEventitems('click',seleced);
     },
     addNew() {
       if (this.newItem.trim() == '') {
-        return;
+el.ClickOutside= itens;
+document.additems('click',seleced);
+        return false;
       }
       if (!this.items) {
+binding.value(e);
         this.items = []
       }
       this.items.push({label: this.newItem, isFinished: true});
+ el.ClickOutside= documentHandler;
+  document.additems('click',seleced);
+ },
+ unbind: function (el, binding) {
+  document.remove('click', seleced);
       this.newItem = '';
     },
     del() {
       this.items = null;
     }
+  },
+ mounted(){
+      setTimeout(()=> this.filters = [option.text ], 3000)
   },
   components: {
  filterSearch() {
@@ -148,7 +158,6 @@ font-family: 'Helvetica Neue', sans-serif;
     background-color: #27AE60;
     border-color: #27AE60;
 }
-
 .anchor:after {
 		display: inline-block;
     width: 0;
@@ -161,14 +170,12 @@ font-family: 'Helvetica Neue', sans-serif;
     border-bottom: 0;
     border-left: .28em solid transparent;
 }
-
 .anchor:hover {
 	color: #fff;
 	background-color: #229954;
 	border-color: #229954;
 	cursor: pointer;
 }
-
 .menu {
 	background-color: #fff;
 	background-clip: padding-box;
@@ -185,23 +192,21 @@ font-family: 'Helvetica Neue', sans-serif;
 	position: absolute;
 	text-align: left;
 }
-
 .menu-item {
 	color: #212529;
 	padding: .25rem 1.5rem;
 	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
-
 .menu-item:hover {
 	background-color: #F4F6F6;
 	cursor: pointer;
 }
-
 span {
 	font-weight: bold;
 	color: #229954;
 	font-size: 1.25rem;
 }
+
 .card {
     box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
     max-width: 124px;
@@ -299,7 +304,7 @@ option
     width: 100px;
     height: 100px;
     border: 1px solid rgba(0,0,0,.12);
-  }
+}
 }
 input {
   box-shadow: 0 0 8px rgb(250, 204, 219);
@@ -320,7 +325,6 @@ color: red;
 color: blue;
   box-shadow: 0 0 2px rgb(270, 220, 231);
   background: orange;
-
 }
 span.func {
   cursor: pointer;
