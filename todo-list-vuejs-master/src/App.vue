@@ -16,6 +16,7 @@
 下拉選單欄：<select v-model="select" >
   <option v-for="option in options" v-bind:value="option.value">
     {{ option.text }}
+<button type="button" v-on:click.prevent="MySubmit">送出</button>
   </option>
 </select>
 搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search seleced the web"/>
@@ -32,18 +33,34 @@
 
 <script>
 import Store from './store';
-
+class Post {
+  constructor(title, link, author, img) {
+    this.title = title;
+    this.link = link;
+    this.author = author;
+    this.img = img;
+}
+}
 export default {
-  name: 'app',
+  el: '#app',
   mounted() {
-    this.hasData = this.items && this.items.length ? true : false;
+setTimeout(()=> this.filters = [], 3000)
+    this.hasData = this.items && this.items.length ? true : true;
   },
   data() {
-    return {
+    return {   
       text: 'Hello Vue!',
       items: Store.fetch(),
       newItem: '',
-      hasData: true
+     parentid:'',
+          childrenid: '',
+          childrens: '',
+          showResult:'',
+filters: '',
+ options: '',
+        selectedValue: '',
+postList : '',
+ hasData: true
     }
   },
   watch: {
@@ -90,6 +107,10 @@ html, body {
   margin-top: 16px;
   margin-bottom: 16px;
   margin: 0;
+font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  text-rendering: optimizelegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-text-size-adjust: none;
  background: -webkit-linear-gradient(left top, #DDD, #777); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(bottom right, #DDD, #777); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(bottom right, #DDD, #777); /* For Firefox 3.6 to 15 */
@@ -119,6 +140,73 @@ font-family: 'Helvetica Neue', sans-serif;
     flex-wrap: wrap;
     padding-top: 12px;
   }
+.anchor {
+	  display: flex;
+		align-items: center;
+		justify-content: center;
+    border: 1px solid transparent;
+    padding: .75rem 2rem;
+    font-size: 1rem;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+		color: #fff;
+    background-color: #27AE60;
+    border-color: #27AE60;
+}
+
+.anchor:after {
+		display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: .5em;
+    vertical-align: .255em;
+    content: "";
+    border-top: .3em solid;
+    border-right: .28em solid transparent;
+    border-bottom: 0;
+    border-left: .28em solid transparent;
+}
+
+.anchor:hover {
+	color: #fff;
+	background-color: #229954;
+	border-color: #229954;
+	cursor: pointer;
+}
+
+.menu {
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid rgba(0,0,0,.15);
+	border-radius: .25rem;
+	color: #212529;
+	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	font-size: 1rem;
+	list-style: none;
+	margin: .125rem 0 0;
+	padding: .5rem 0;
+	position: absolute;
+	text-align: left;
+}
+
+.menu-item {
+	color: #212529;
+	padding: .25rem 1.5rem;
+	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.menu-item:hover {
+	background-color: #F4F6F6;
+	cursor: pointer;
+}
+
+span {
+	font-weight: bold;
+	color: #229954;
+	font-size: 1.25rem;
+}
 .card {
     box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
     max-width: 124px;
