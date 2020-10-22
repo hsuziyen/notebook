@@ -3,19 +3,20 @@
     <div class="container">
 <a v-for="n in filterSearch" :href="n.url">{{ n.title }}</a>
       <h1 v-text="text"></h1>
- 項目文字欄：<input type="text" v-model="newItem"placeholder="Search the text web" v-on:keyup.enter="addNew" />
+項目文字欄：<input type="text" v-model="newItem"placeholder="Search the text web" v-on:keyup.enter="addNew" />
 修改Title欄：<input type="text" v-model="text"placeholder="Search title text web" v-on:keyup.enter="addNew" />
-      <button v-on:click="addNew">請按按鈕新增項目</button>
-<button v-on:click="addNew">請按按鈕查詢列表項目</button>
+<button v-on:click="addNew">請按按鈕新增並存取項目</button>
+<button type="button" v-on:click.prevent="MySubmit">請按按紐查詢列表項目並
+送至Sqlite</button>
       <ul>
         <li v-for="(item, index) in items">
           <span v-bind:class="{finished: item.isFinished}">{{item.label}}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)" class="func">delete</span>
         </li>
-下拉選單欄：<select v-model="select" >
-  <option v-for="option in options" v-bind:value="option.value">
-    {{ option.text }}
+下拉選單欄：<select name="children" v-model.number="childrenid">
+<option v-for="(c,index) in childrens" v-if="childrens.length > 0" v-bind:value="c.Value" > 
+{{c.Text}}
   </option>
 </select>
 搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search seleced the web"/>
@@ -23,7 +24,7 @@
 <div>{{msg | upper}}</div>
 <div v-bind:id="id | formatId"></div>
       </ul>
-      <div v-show="hasData" v-on:click="del" class="delAll">
+<div v-show="hasData" v-on:click="del" class="delAll">
         Copyright @2020 Hello Vue! Web Design By中國科大實習生1061461048ChihYen_Hsu製作
       </div>
     </div>
@@ -41,25 +42,25 @@ class Post {
 }
 }
 export default {
-  el: 'app',
+  name: 'app',
   mounted() {
-    this.hasData = this.items && this.items.length ? true : true;
+    this.hasData = this.items && this.items.length ? true : false;
   },
   data() {
     return {
       text: 'Hello Vue!',
       items: Store.fetch(),
       newItem: '',
-filters: null,
-        selectedValue: null,
- Index: 0,
+          showResult: "" ,
       hasData: true
     }
   },
   watch: {
     items: {
       handler(items) {
+ let data = [{id,pid,text}];
         Store.save(items);
+      Arry =({label:this.newItem,text,value})
         this.hasData = this.items && this.items.length ? true : true;
       },
       deep: true
@@ -67,33 +68,25 @@ filters: null,
   },
   methods: {
     toggle(item) {
-      item.isFinished = !item.isFinished;
-document.addEventitems('click',seleced);
+	item.isFinished = !item.isFinished;
     },
     addNew() {
       if (this.newItem.trim() == '') {
-el.ClickOutside= itens;
-document.additems('click',seleced);
-        return false;
+              vm.text = [items,value];
+        return;
       }
       if (!this.items) {
-binding.value(e);
-        this.items = []
+ if (this.newItem.trim() === vm.parentid)
+	arry.push
+        this.items = [text,value]
       }
       this.items.push({label: this.newItem, isFinished: true});
- el.ClickOutside= documentHandler;
-  document.additems('click',seleced);
- },
- unbind: function (el, binding) {
-  document.remove('click', seleced);
+            JSON.stringify
       this.newItem = '';
     },
     del() {
       this.items = null;
     }
-  },
- mounted(){
-      setTimeout(()=> this.filters = [option.text ], 3000)
   },
   components: {
  filterSearch() {
