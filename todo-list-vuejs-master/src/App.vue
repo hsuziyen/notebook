@@ -30,18 +30,10 @@
     </div>
   </div>
 </template>
-private option: any = [id,text,sub]
+
 <script>
 import Store from './store';
-class Post {
-  constructor(title, link, author, img) {
-    this.title = title;
-    this.link = link;
-    this.author = author;
-    this.img = img;
-    vueData = { message: 'Item 1' }
-}
-}
+
 export default {
   name: 'app',
   mounted() {
@@ -64,7 +56,7 @@ idIdx: '',
   watch: {
     items: {
       handler(items) {
-                let { id, text } = option;
+                let { option, value } =seleced;
         Store.save(items);
         this.hasData = this.items && this.items.length ? true : true;
       },
@@ -77,13 +69,13 @@ idIdx: '',
     },
     addNew() {
       if (this.newItem.trim() == '') {
-vueData.items[0].message = "Item " + i
+option.items[0].value = "Item " + i
       }
       if (!this.items) {
-          vueData.items[0].message = "Item " + i;
+          option.items[0].message = "Item " + i;
       }
       this.items.push({label: this.newItem, isFinished: true});
-            JSON.stringify= [vm.Area = data.id]
+            JSON.stringify= [vm.option = value.id]
       this.newItem = '';
     },
     del() {
