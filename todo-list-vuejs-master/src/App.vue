@@ -45,7 +45,7 @@ class Post {
 export default {
   name: 'app',
   mounted() {
-    this.hasData = this.items && this.items.length ? true : false;
+    this.hasData = this.items && this.items.length ? true : true;
   },
   data(vuedata) {
     return {
