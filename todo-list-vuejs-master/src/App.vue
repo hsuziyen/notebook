@@ -6,19 +6,19 @@
 項目文字欄：<input type="text" v-model="newItem"placeholder="Search the text web" v-on:keyup.enter="addNew" />
 修改Title欄：<input type="text" v-model="text"placeholder="Search title text web" v-on:keyup.enter="addNew" />
 <button v-on:click="addNew">請按按鈕新增並存取項目</button>
-<button type="button" v-on:click.prevent="MySubmit">請按按紐查詢列表項目並
-送至Sqlite</button>
+<button type="button" v-on:click.prevent="MySubmit">請按按紐查詢列表項目</button>
       <ul>
         <li v-for="(item, index) in items">
           <span v-bind:class="{finished: item.isFinished}">{{item.label}}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)" class="func">delete</span>
         </li>
-下拉選單欄：<select name="children" v-model.number="childrenid">
-<option v-for="(c,index) in childrens" v-if="childrens.length > 0" v-bind:value="c.Value" > 
-{{c.Text}}
+下拉選單欄：<select v-model="select" >
+  <option v-for="option in options" v-bind:value="option.value">
+    {{ option.text }}
   </option>
 </select>
+<span>{{ multiselect }}</span>
 搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search seleced the web"/>
 <a v-for="n in filterSearch" :href="n.url">{{ n.title }}</a>
 <div>{{msg | upper}}</div>
@@ -30,7 +30,7 @@
     </div>
   </div>
 </template>
-
+private option: any = [id,text,sub]
 <script>
 import Store from './store';
 class Post {
@@ -39,6 +39,7 @@ class Post {
     this.link = link;
     this.author = author;
     this.img = img;
+    vueData = { message: 'Item 1' }
 }
 }
 export default {
@@ -46,11 +47,16 @@ export default {
   mounted() {
     this.hasData = this.items && this.items.length ? true : false;
   },
-  data() {
+  data(vuedata) {
     return {
       text: 'Hello Vue!',
       items: Store.fetch(),
       newItem: '',
+seleced:'',
+option: '',
+optionIdx:'',
+    valueIdx: '',
+idIdx: '',
           showResult: "" ,
       hasData: true
     }
@@ -58,9 +64,8 @@ export default {
   watch: {
     items: {
       handler(items) {
- let data = [{id,pid,text}];
+                let { id, text } = option;
         Store.save(items);
-      Arry =({label:this.newItem,text,value})
         this.hasData = this.items && this.items.length ? true : true;
       },
       deep: true
@@ -72,16 +77,13 @@ export default {
     },
     addNew() {
       if (this.newItem.trim() == '') {
-              vm.text = [items,value];
-        return;
+vueData.items[0].message = "Item " + i
       }
       if (!this.items) {
- if (this.newItem.trim() === vm.parentid)
-	arry.push
-        this.items = [text,value]
+          vueData.items[0].message = "Item " + i;
       }
       this.items.push({label: this.newItem, isFinished: true});
-            JSON.stringify
+            JSON.stringify= [vm.Area = data.id]
       this.newItem = '';
     },
     del() {
@@ -89,7 +91,7 @@ export default {
     }
   },
   components: {
- filterSearch() {
+  filterSearch() {
     return this.news.filter(searchResult => searchResult.title.match(this.searchWords));
 }
 }
