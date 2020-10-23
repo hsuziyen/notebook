@@ -3,23 +3,24 @@
     <div class="container">
 <a v-for="n in filterSearch" :href="n.url">{{ n.title }}</a>
       <h1 v-text="text"></h1>
-項目文字欄：<input type="text" v-model="newItem"placeholder="Search the text web" v-on:keyup.enter="addNew" />
-修改Title欄：<input type="text" v-model="text"placeholder="Search title text web" v-on:keyup.enter="addNew" />
-<button v-on:click="addNew">請按按鈕新增並存取項目</button>
+項目文字欄: <input type="text" v-model="newItem"placeholder="輸入要顯示在項目選單中之文字"v-on:keyup.enter="addNew" />
+修改Title欄：<input type="text" v-model="text"placeholder="輸入要顯示在標題中之文字" v-on:keyup.enter="addNew" />
+<button v-on:click="addNew">請按按鈕新增項目</button>
 <button type="button" v-on:click.prevent="MySubmit">請按按紐查詢列表項目</button>
       <ul>
         <li v-for="(item, index) in items">
           <span v-bind:class="{finished: item.isFinished}">{{item.label}}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)" class="func">delete</span>
+	<span style="font-size:20px;"></span>
+	<span id="click" style="color:red;"></span><br>
         </li>
-下拉選單欄：<select v-model="select" >
+下拉選單欄:<select id=theList>
   <option v-for="option in options" v-bind:value="option.value">
     {{ option.text }}
   </option>
 </select>
-<span>{{ multiselect }}</span>
-搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search seleced the web"/>
+搜尋過濾項目欄：<input type="text"v-model="search" placeholder="輸入搜尋列表在項目選單中之文字"/>
 <a v-for="n in filterSearch" :href="n.url">{{ n.title }}</a>
 <div>{{msg | upper}}</div>
 <div v-bind:id="id | formatId"></div>
@@ -39,52 +40,75 @@ export default {
   mounted() {
     this.hasData = this.items && this.items.length ? true : true;
   },
-  data(vuedata) {
+  data() {
     return {
       text: 'Hello Vue!',
       items: Store.fetch(),
       newItem: '',
-seleced:'',
-option: '',
-optionIdx:'',
-    valueIdx: '',
-idIdx: '',
-          showResult: "" ,
+	msg: '',
+	Index: '',
+	option: '',
+	optionIndex: '',
+	list: '',
       hasData: true
     }
   },
-  watch: {
+ watch: {
     items: {
       handler(items) {
-                let { option, value } =seleced;
         Store.save(items);
-        this.hasData = this.items && this.items.length ? true : true;
+        this.hasData = this.items && this.items.length ? true : false;
       },
       deep: true
     }
   },
   methods: {
     toggle(item) {
-	item.isFinished = !item.isFinished;
+      item.isFinished = !item.isFinished;
     },
     addNew() {
       if (this.newItem.trim() == '') {
-option.items[0].value = "Item " + i
+			var TheMsg;
+			var index=list.options.length;
+ 			var searchText = $(this).val(); 
+            		var $searchLi = "";
+		list.options[index]=new Option(text, value);
+$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent();
+        return document.getElementById("check").innerHTML = "已新增一值「"+text+"」";
       }
       if (!this.items) {
-          option.items[0].message = "Item " + i;
+ $("#content_news_list").html($searchLi).clone();
+        	this.items = []
       }
-      this.items.push({label: this.newItem, isFinished: true});
-            JSON.stringify= [vm.option = value.id]
-      this.newItem = '';
+      this.items.push({label: this.newItem, isFinished: false});
+	document.getElementById("check").innerHTML = "已新增一值「"+text+"」";
+      this.newItem = '請輸入要顯示在選單中的文字';
     },
     del() {
-      this.items = null;
+	if(index>=0){
+				TheMsg = "已刪除所選取的元件「"+list.options[index].text+"」";
+				list.options[index]=null;
+			}else{
+				TheMsg = "新增新選項後方可再次刪除";
+				alert("已無任何選項！");
+ 			$("#content_news_list").html("");
     }
   },
   components: {
   filterSearch() {
+	var arr =[];
+            document.execCommand("HiliteColor", false, "aquamarine");
+            sel.collapseToEnd();
+			isfound=1;
+       document.designMode = "off";
+for(var i=0;i<this.info.length;i  ){
+ if(this.info[i].name.indexOf(this.search)!=-1){
+arr.push(this.info[i])
+document.getElementById("check").innerHTML = TheMsg;
     return this.news.filter(searchResult => searchResult.title.match(this.searchWords));
+}
+}
+}
 }
 }
 }
