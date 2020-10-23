@@ -1,4 +1,4 @@
-<template>
+template>
   <div id="app">
     <div class="container">
 <a v-for="n in filterSearch" :href="n.url">{{ n.title }}</a>
@@ -69,24 +69,29 @@ export default {
     },
     addNew() {
       if (this.newItem.trim() == 'option') {
-			var TheMsg;
-			var index=list.options.length;
- 			var searchText = $(this).val(item.option); 
-            		var $searchLi = "option.item";
-		list.options[index]=new Option(text, value);
-$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent(item.option);
-alert( obj.options[obj.selectedIndex].innerHTML);
-paramArray=obj.value.split(",");
+			function addOption(objId,text,val){
        return 
 document.getElementById("click").innerHTML = "已新增一值「"+text+"」";
        this.newItem = 'options';;
       }
       if (!this.items) {
-	var index=list.options.length;
-list.options[index]=new Option(text, value);
-$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent(item.option);
-alert( obj.options[obj.selectedIndex].innerHTML);
- $("#content_news_list").html($searchLi).clone(item.option);
+	var obj = document.getElementById(objId);
+
+var objOption = new Option(text,val);
+
+ 
+
+    obj.options.add(objOption);
+
+    //alert(text + "," + val);
+
+   
+
+    objOption = null;
+
+    obj = null;
+
+}
         	this.items = [item.option]
       }
       this.items.push({label: this.newItem, isFinished: true});
@@ -100,16 +105,16 @@ alert( obj.options[obj.selectedIndex].innerHTML);
     },
     del() {
 	if(index>=0){
-var index=list.options.length;
-				list.options[index]=new Option(text, value);
-				TheMsg = "已刪除所選取的元件「"+list.options[index].text+"」";
-				list.options[index]=null;
-			}else{
-				TheMsg = "新增新選項後方可再次刪除";
-				alert("已無任何選項！");
- 			$("#content_news_list").html("option");
-			this.items = null;
-			this.options = null;
+
+var obj = document.getElementById(objId);
+
+ 
+
+obj.options.length = 0;
+
+ 
+
+obj = null;
     }
   },
   components: {
