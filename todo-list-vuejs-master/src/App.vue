@@ -71,27 +71,29 @@ export default {
       if (this.newItem.trim() == 'option') {
 			var TheMsg;
 			var index=list.options.length;
- 			var searchText = $(this).val(option); 
-            		var $searchLi = "option";
+ 			var searchText = $(this).val(item.option); 
+            		var $searchLi = "option.item";
 		list.options[index]=new Option(text, value);
-$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent();
+$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent(item.option);
 alert( obj.options[obj.selectedIndex].innerHTML);
 paramArray=obj.value.split(",");
-       return;
+       return 
+document.getElementById("click").innerHTML = "已新增一值「"+text+"」";
+       this.newItem = 'options';;
       }
       if (!this.items) {
 	var index=list.options.length;
 list.options[index]=new Option(text, value);
-$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent(option);
+$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent(item.option);
 alert( obj.options[obj.selectedIndex].innerHTML);
- $("#content_news_list").html($searchLi).clone(option);
-        	this.items = []
+ $("#content_news_list").html($searchLi).clone(item.option);
+        	this.items = [item.option]
       }
       this.items.push({label: this.newItem, isFinished: true});
 var index=list.options.length;				
 list.options[index]=new Option(text, value);
 alert("請輸入要顯示在選單中的文字！");
-$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent(option);
+$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent(item.option);
 alert( obj.options[obj.selectedIndex].innerHTML);
 	document.getElementById("click").innerHTML = "已新增一值「"+text+"」";
        this.newItem = 'options';
@@ -107,11 +109,12 @@ var index=list.options.length;
 				alert("已無任何選項！");
  			$("#content_news_list").html("option");
 			this.items = null;
+			this.options = null;
     }
   },
   components: {
   filterSearch() {
-	var arr =[option];
+	var arr =[items.option];
             document.execCommand("HiliteColor", true, "aquamarine");
             sel.collapseToEnd(option);
 			isfound=1;
