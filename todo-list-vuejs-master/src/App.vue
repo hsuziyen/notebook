@@ -73,6 +73,8 @@ export default {
             		var $searchLi = "";
 		list.options[index]=new Option(text, value);
 $searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent();
+alert( obj.options[obj.selectedIndex].innerHTML);
+paramArray=obj.value.split(",");
         return document.getElementById("check").innerHTML = "已新增一值「"+text+"」";
       }
       if (!this.items) {
