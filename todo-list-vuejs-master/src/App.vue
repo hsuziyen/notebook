@@ -12,7 +12,6 @@
           <span v-bind:class="{finished: item.isFinished}">{{item.label}}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)" class="func">delete</span>
-	<span style="font-size:20px;"></span>
 	<span id="click" style="color:red;"></span><br>
         </li>
 下拉選單欄:<select id=theList>
