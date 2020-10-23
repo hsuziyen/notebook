@@ -71,8 +71,8 @@ export default {
       if (this.newItem.trim() == 'option') {
 			var TheMsg;
 			var index=list.options.length;
- 			var searchText = $(this).val(); 
-            		var $searchLi = "";
+ 			var searchText = $(this).val(option); 
+            		var $searchLi = "option";
 		list.options[index]=new Option(text, value);
 $searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent();
 alert( obj.options[obj.selectedIndex].innerHTML);
@@ -80,41 +80,46 @@ paramArray=obj.value.split(",");
        return;
       }
       if (!this.items) {
+	var index=list.options.length;
 list.options[index]=new Option(text, value);
-$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent();
+$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent(option);
 alert( obj.options[obj.selectedIndex].innerHTML);
- $("#content_news_list").html($searchLi).clone();
+ $("#content_news_list").html($searchLi).clone(option);
         	this.items = []
       }
       this.items.push({label: this.newItem, isFinished: true});
+var index=list.options.length;				
 list.options[index]=new Option(text, value);
-$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent();
+alert("請輸入要顯示在選單中的文字！");
+$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent(option);
 alert( obj.options[obj.selectedIndex].innerHTML);
-	document.getElementById("check").innerHTML = "已新增一值「"+text+"」";
-       this.newItem = '';
+	document.getElementById("click").innerHTML = "已新增一值「"+text+"」";
+       this.newItem = 'options';
     },
     del() {
 	if(index>=0){
+var index=list.options.length;
+				list.options[index]=new Option(text, value);
 				TheMsg = "已刪除所選取的元件「"+list.options[index].text+"」";
 				list.options[index]=null;
 			}else{
 				TheMsg = "新增新選項後方可再次刪除";
 				alert("已無任何選項！");
- 			$("#content_news_list").html("");
+ 			$("#content_news_list").html("option");
 			this.items = null;
     }
   },
   components: {
   filterSearch() {
-	var arr =[];
-            document.execCommand("HiliteColor", false, "aquamarine");
-            sel.collapseToEnd();
+	var arr =[option];
+            document.execCommand("HiliteColor", true, "aquamarine");
+            sel.collapseToEnd(option);
 			isfound=1;
-       document.designMode = "off";
+       document.designMode = "turn on";
 for(var i=0;i<this.info.length;i  ){
  if(this.info[i].name.indexOf(this.search)!=-1){
 arr.push(this.info[i])
-document.getElementById("check").innerHTML = TheMsg;
+document.getElementById("click").innerHTML = TheMsg;
     return this.news.filter(searchResult => searchResult.title.match(this.searchWords));
 }
 }
