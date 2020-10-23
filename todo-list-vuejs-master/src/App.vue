@@ -54,9 +54,10 @@ export default {
   },
  watch: {
     items: {
-      handler(items) {
-        Store.save(items);
-        this.hasData = this.items && this.items.length ? true : false;
+      handler(options) {
+        Store.save(options);
+        this.hasData = this.items && this.items.length ? true : true;
+	this.hasData = this.options && this.options.length ? true : true;
       },
       deep: true
     }
@@ -64,9 +65,10 @@ export default {
   methods: {
     toggle(item) {
       item.isFinished = !item.isFinished;
+	option.isFinished = !option.isFinished;
     },
     addNew() {
-      if (this.newItem.trim() == '') {
+      if (this.newItem.trim() == 'option') {
 			var TheMsg;
 			var index=list.options.length;
  			var searchText = $(this).val(); 
@@ -75,15 +77,21 @@ export default {
 $searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent();
 alert( obj.options[obj.selectedIndex].innerHTML);
 paramArray=obj.value.split(",");
-        return document.getElementById("check").innerHTML = "已新增一值「"+text+"」";
+       return;
       }
       if (!this.items) {
+list.options[index]=new Option(text, value);
+$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent();
+alert( obj.options[obj.selectedIndex].innerHTML);
  $("#content_news_list").html($searchLi).clone();
         	this.items = []
       }
-      this.items.push({label: this.newItem, isFinished: false});
+      this.items.push({label: this.newItem, isFinished: true});
+list.options[index]=new Option(text, value);
+$searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent();
+alert( obj.options[obj.selectedIndex].innerHTML);
 	document.getElementById("check").innerHTML = "已新增一值「"+text+"」";
-      this.newItem = '請輸入要顯示在選單中的文字';
+       this.newItem = '';
     },
     del() {
 	if(index>=0){
@@ -93,6 +101,7 @@ paramArray=obj.value.split(",");
 				TheMsg = "新增新選項後方可再次刪除";
 				alert("已無任何選項！");
  			$("#content_news_list").html("");
+			this.items = null;
     }
   },
   components: {
