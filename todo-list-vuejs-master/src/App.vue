@@ -12,7 +12,7 @@ template>
           <span v-bind:class="{finished: item.isFinished}">{{item.label}}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)" class="func">delete</span>
-	<span id="click" style="color:red;"></span><br>
+    <span id="click" style="color:red;"></span><br>
         </li>
 下拉選單欄:<select id=theList>
   <option v-for="option in options" v-bind:value="option.value">
@@ -44,11 +44,11 @@ export default {
       text: 'Hello Vue!',
       items: Store.fetch(),
       newItem: '',
-	msg: '',
-	Index: '',
-	option: '',
-	optionIndex: '',
-	list: '',
+    msg: '',
+    Index: '',
+    option: '',
+    optionIndex: '',
+    list: '',
       hasData: true
     }
   },
@@ -57,7 +57,7 @@ export default {
       handler(options) {
         Store.save(options);
         this.hasData = this.items && this.items.length ? true : true;
-	this.hasData = this.options && this.options.length ? true : true;
+    this.hasData = this.options && this.options.length ? true : true;
       },
       deep: true
     }
@@ -65,17 +65,17 @@ export default {
   methods: {
     toggle(item) {
       item.isFinished = !item.isFinished;
-	option.isFinished = !option.isFinished;
+    option.isFinished = !option.isFinished;
     },
     addNew() {
       if (this.newItem.trim() == 'option') {
-			function addOption(objId,text,val){
-       return 
+            function addOption(objId,text,val){
+       return
 document.getElementById("click").innerHTML = "已新增一值「"+text+"」";
        this.newItem = 'options';;
       }
       if (!this.items) {
-	var obj = document.getElementById(objId);
+    var obj = document.getElementById(objId);
 
 var objOption = new Option(text,val);
 
@@ -92,19 +92,19 @@ var objOption = new Option(text,val);
     obj = null;
 
 }
-        	this.items = [item.option]
+            this.items = [item.option]
       }
       this.items.push({label: this.newItem, isFinished: true});
-var index=list.options.length;				
+var index=list.options.length;                
 list.options[index]=new Option(text, value);
 alert("請輸入要顯示在選單中的文字！");
 $searchLi = $("#content_news_list").find('a:contains(' + searchText + ')').parent(item.option);
 alert( obj.options[obj.selectedIndex].innerHTML);
-	document.getElementById("click").innerHTML = "已新增一值「"+text+"」";
+    document.getElementById("click").innerHTML = "已新增一值「"+text+"」";
        this.newItem = 'options';
     },
     del() {
-	if(index>=0){
+    if(index>=0){
 
 var obj = document.getElementById(objId);
 
@@ -119,10 +119,10 @@ obj = null;
   },
   components: {
   filterSearch() {
-	var arr =[items.option];
+    var arr =[items.option];
             document.execCommand("HiliteColor", true, "aquamarine");
             sel.collapseToEnd(option);
-			isfound=1;
+            isfound=1;
        document.designMode = "turn on";
 for(var i=0;i<this.info.length;i  ){
  if(this.info[i].name.indexOf(this.search)!=-1){
@@ -180,20 +180,20 @@ font-family: 'Helvetica Neue', sans-serif;
     padding-top: 12px;
   }
 .anchor {
-	  display: flex;
-		align-items: center;
-		justify-content: center;
+      display: flex;
+        align-items: center;
+        justify-content: center;
     border: 1px solid transparent;
     padding: .75rem 2rem;
     font-size: 1rem;
     border-radius: .25rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-		color: #fff;
+        color: #fff;
     background-color: #27AE60;
     border-color: #27AE60;
 }
 .anchor:after {
-		display: inline-block;
+        display: inline-block;
     width: 0;
     height: 0;
     margin-left: .5em;
@@ -205,40 +205,40 @@ font-family: 'Helvetica Neue', sans-serif;
     border-left: .28em solid transparent;
 }
 .anchor:hover {
-	color: #fff;
-	background-color: #229954;
-	border-color: #229954;
-	cursor: pointer;
+    color: #fff;
+    background-color: #229954;
+    border-color: #229954;
+    cursor: pointer;
 }
 .menu {
-	background-color: #fff;
-	background-clip: padding-box;
-	border: 1px solid rgba(0,0,0,.15);
-	border-radius: .25rem;
-	color: #212529;
-	cursor: pointer;
-	display: flex;
-	flex-direction: column;
-	font-size: 1rem;
-	list-style: none;
-	margin: .125rem 0 0;
-	padding: .5rem 0;
-	position: absolute;
-	text-align: left;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+    color: #212529;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font-size: 1rem;
+    list-style: none;
+    margin: .125rem 0 0;
+    padding: .5rem 0;
+    position: absolute;
+    text-align: left;
 }
 .menu-item {
-	color: #212529;
-	padding: .25rem 1.5rem;
-	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    color: #212529;
+    padding: .25rem 1.5rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 .menu-item:hover {
-	background-color: #F4F6F6;
-	cursor: pointer;
+    background-color: #F4F6F6;
+    cursor: pointer;
 }
 span {
-	font-weight: bold;
-	color: #229954;
-	font-size: 1.25rem;
+    font-weight: bold;
+    color: #229954;
+    font-size: 1.25rem;
 }
 
 .card {
@@ -434,3 +434,4 @@ display: flex;
   margin-top: 60px;
 }
 </style>
+
