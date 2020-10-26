@@ -1,4 +1,4 @@
-template>
+<template>
   <div id="app">
     <div class="container">
 <a v-for="n in filterSearch" :href="n.url">{{ n.title }}</a>
