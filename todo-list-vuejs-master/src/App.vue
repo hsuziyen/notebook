@@ -5,6 +5,7 @@
       <h1 v-text="text"></h1>
 項目文字欄: <input type="text" v-model="newItem"placeholder="輸入要顯示在項目選單中之文字"v-on:keyup.enter="addNew" />
 修改Title欄：<input type="text" v-model="text"placeholder="輸入要顯示在標題中之文字" v-on:keyup.enter="addNew" />
+項目文字欄：<input id=theText placeholder="輸入要顯示在選單中之文字">
 <button v-on:click="addNew">請按按鈕新增項目</button>
 <button type="button" v-on:click.prevent="MySubmit">請按按紐查詢列表項目</button>
       <ul>
@@ -16,12 +17,10 @@
         </li>
 下拉選單欄:<select id=theList>
   <option v-for="option in options" v-bind:value="option.value">
-    {{ option.text }}
   </option>
 </select>
 搜尋過濾項目欄：<input type="text"v-model="search" placeholder="輸入搜尋列表在項目選單中之文字"/>
-<a v-for="n in filterSearch" :href="n.url">{{ n.title }}</a>
-<div>{{msg | upper}}</div>
+<a v-for="n in filterSearch" :href="n.url"></a>
 <div v-bind:id="id | formatId"></div>
       </ul>
 <div v-show="hasData" v-on:click="del" class="delAll">
@@ -35,6 +34,7 @@
 import Store from './store';
 
 export default {
+var vm = new Vue({
   el: '#app',
   mounted() {
     this.hasData = this.items && this.items.length ? true : true;
@@ -76,13 +76,23 @@ immediate: true,
     },
     addNew() {
       if (this.newItem.trim() === '1') {
+	TheMsg = "已刪除所選取的元件「"+list.options[index].text+"」";
+				list.options[index]=null;
 	this.statusValue = 'success';
       }else 
       if (!this.items) {
+			TheMsg = "新增新選項後方可再次刪除";
+				alert("已無任何選項！");
 	this.statusValue = 'success';
         this.items = [console.log('update status: ' + status)]
       }else 
       this.items.push({label: this.newItem, isFinished: false});
+	if(text==""){
+				alert("請輸入要顯示在選單中的文字！");
+			}else{
+				var index=list.options.length;
+				list.options[index]=new Option(text, value);
+				document.getElementById("check").innerHTML = 				"已新增一值「"+text+"」";
 this.statusValue = 'pending';
 console.log('update status: ' + status);
       this.newItem = '';
