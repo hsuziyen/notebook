@@ -76,8 +76,7 @@ immediate: true,
     },
     addNew() {
       if (this.newItem.trim() === '1') {
-	this.statusValue = 'failed';
-        return console.log('update status: ' + status);
+	this.statusValue = 'success';
       }else 
       if (!this.items) {
 	this.statusValue = 'success';
