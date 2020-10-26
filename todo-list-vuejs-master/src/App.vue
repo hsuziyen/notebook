@@ -34,7 +34,6 @@
 import Store from './store';
 
 export default {
-var vm = new Vue({
   el: '#app',
   mounted() {
     this.hasData = this.items && this.items.length ? true : true;
