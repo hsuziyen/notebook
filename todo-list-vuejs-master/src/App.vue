@@ -1,112 +1,120 @@
 <template>
   <div id="app">
     <div class="container">
-<a v-for="n in filterSearch" :href="n.url">{{ n.title }}</a>
-      <h1 v-text="text"></h1>
-項目文字欄: <input type="text" v-model="newItem"placeholder="輸入要顯示在項目選單中之文字"v-on:keyup.enter="addNew" />
-修改Title欄：<input type="text" v-model="text"placeholder="輸入要顯示在標題中之文字" v-on:keyup.enter="addNew" />
-項目文字欄：<input id=theText placeholder="輸入要顯示在選單中之文字">
-<button v-on:click="addNew">請按按鈕新增項目</button>
-<button type="button" v-on:click.prevent="MySubmit">請按按紐查詢列表項目</button>
+    <div class="well">
+    <label>Enter item name to filter</label>
+    <h1 v-text="text"></h1>
+     項目文字欄:<input type="text" v-model="newItem" v-on:keyup.enter="addNew" placeholder="Project text field" />
+     修改title欄：<input type="text" v-model="text" v-on:keyup.enter="addNew" placeholder="Modify the title bar" />
+      <button v-on:click="addNew">請按按鈕新增項目</button>
+      <button v-on:click="addNew">請按按鈕查詢列表項目</button>
+      <button v-on:click="addNew">請按按鈕刪除全部項目</button>
       <ul>
+        <!-- v-for loop -->
         <li v-for="(item, index) in items">
-          <span v-bind:class="{finished: item.isFinished}">{{item.label}}</span>
+          <span v-bind:class="{finished: item.isFinished}">{{ item.label }}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
-          <span v-on:click="items.splice(index, 1)" class="func">delete</span>
-	<span id="click" style="color:red;"></span><br>
+          <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
-下拉選單欄:<select id=theList>
-  <option v-for="option in options" v-bind:value="option.value">
-  </option>
-</select>
-搜尋過濾項目欄：<input type="text"v-model="search" placeholder="輸入搜尋列表在項目選單中之文字"/>
-<a v-for="n in filterSearch" :href="n.url"></a>
-<div v-bind:id="id | formatId"></div>
-      </ul>
-<div v-show="hasData" v-on:click="del" class="delAll">
-        Copyright @2020 Hello Vue! Web Design By中國科大實習生1061461048ChihYen_Hsu製作
+         下拉選單欄:<select id="mySelect">
+         <option v-for="item in items" :value="item">{{item.label}}</option>
+	</select>
+        搜尋過濾項目欄:<input type="text" id="myInput" v-model="myInput" placeholder="Search filter column .."/>
+        <br>
+        <span style="color: red">{{ msg }}</span>
+       </ul>
+        Copyright @2020 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
     </div>
   </div>
 </template>
-
-<script>
+<!--  all class attributes only for style -->
+<!-- this vuejs cdn link -->
+<script src ="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"</script>
+<! --bootstrap style link just for css style -->
+<script type="text/javascript">
 import Store from './store';
 
 export default {
   el: '#app',
   mounted() {
-    this.hasData = this.items && this.items.length ? true : true;
+     this.hasData = this.items && this.items.length ? true : true;
   },
-data() {
+  data() {
     return {
       text: 'Hello Vue!',
-      items: Store.fetch(),
+      items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
+      itemsarray: [],
+      myInput: '',
+      msg: '',
+      arraydatas: [],
+      delimiters: ['${', '}'],
+      Search: '',
+      selected: '',
+      filterSearch: '',
+      option: '',
+      info: [],
+      filter: [],
+      filterArray: [],
+      filterText: '',
+      searchValue: "",
+      results: [],
+      isOpen: true,
+      currentlyCounter: '',
+      isShow: true,
+      loading: true,
+      loadingStyle: true,
+      title: '',
+      url: '',
+      news: '',
       newItem: '',
-	userName: '',
-    	errMsg: '',
-	delimiters: ['${', '}'],
-	props: ['id', 'status'],
-	statusValue: this.status,
-	list: [{ id: 0 , status: 'success' },
-      { id: 1 , status: 'pending' },
-      { id: 2 , status: 'failed' }],
-	hasData: true
+      hasData: true
     }
   },
+ created: function() {
+   this.item = this.itemsarray;
+   },
   watch: {
-    statusValueitems: {
-      handler(items,newValue, oldValue) {
-	var newStatus = newValue || 'no new value';
-        var oldStatus = oldValue || 'no old value';
-	console.log('old value: ' + oldStatus);
-        console.log('new value: ' + newStatus);
+    items: {
+      handler(items) {
+	// console.log('prefix = ' + value);
+	this.filterSearch(value);
         Store.save(items);
-        this.hasData = this.items && this.items.length ? true : false;
+        this.hasData = this.items && this.items.length ? true : true;
       },
-immediate: true,
       deep: true
     }
   },
   methods: {
-   toggle(item) {
+    toggle(item) {
       item.isFinished = !item.isFinished;
-	console.log('update status: ' + status);
     },
     addNew() {
-      if (this.newItem.trim() === '1') {
-	TheMsg = "已刪除所選取的元件「"+list.options[index].text+"」";
-				list.options[index]=null;
-	this.statusValue = 'success';
-      }else 
+      if (this.newItem.trim() == '') {           
+      return 
+      }
       if (!this.items) {
-			TheMsg = "新增新選項後方可再次刪除";
-				alert("已無任何選項！");
-	this.statusValue = 'success';
-        this.items = [console.log('update status: ' + status)]
-      }else 
-      this.items.push({label: this.newItem, isFinished: false});
-	if(text==""){
-				alert("請輸入要顯示在選單中的文字！");
-			}else{
-				var index=list.options.length;
-				list.options[index]=new Option(text, value);
-				document.getElementById("check").innerHTML = 				"已新增一值「"+text+"」";
-this.statusValue = 'pending';
-console.log('update status: ' + status);
+        this.items = []
+      }
+      this.items.push({label: this.newItem, isFinished: true});
       this.newItem = '';
     },
     del() {
-this.$emit('change', this.statusValue);
-console.log('update status: ' + status);
       this.items = null;
     }
   },
-  components: {
-  filterSearch() {
-    	return this.news.filter(searchResult => searchResult.title.match(this.searchWords));
-}
-}
+ components: {
+   filterSearch(prefix) {
+		this.itemsarray = this.items.filter(item => item.startsWith(prefix));
+		// console.log('itemsarray.length = ' + this.itemsarray.length);
+		if (this.itemsarray.length === 0) {
+		   this.msg = '找不到 ' + prefix + ' 開頭的資料';
+		   this.itemsarray = this.items;
+		} else {
+			this.msg = '';
+     }
+   }  
+ }
 }
 </script>
 
@@ -116,211 +124,34 @@ html, body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  padding: 20px 10px;
   margin-top: 16px;
   margin-bottom: 16px;
   margin: 0;
-font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Arial, sans-serif;
   text-rendering: optimizelegibility;
   -moz-osx-font-smoothing: grayscale;
   -moz-text-size-adjust: none;
- background: -webkit-linear-gradient(left top, #DDD, #777); /* For Safari 5.1 to 6.0 */
+  background: -webkit-linear-gradient(left top, #DDD, #777); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(bottom right, #DDD, #777); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(bottom right, #DDD, #777); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to bottom right, #DDD, #777); /* Standard syntax */
   background-attachment: fixed;
-font-size:20px;
+  font-size:20px;
   line-height: 1.5em;
-font-family: 'Helvetica Neue', sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
 }
 .container {
   text-align: center;
 }
-.search-wrapper {
-    position: relative;
-    label {
-      position: absolute;
-      font-size: 12px;
-      color: rgba(0,0,0,50);
-      top: 8px;
-      left: 12px;
-      z-index: -1;
-      transition: .15s all ease-in-out;
-    }
-.wrapper {
-    display: flex;
-    max-width: 444px;
-    flex-wrap: wrap;
-    padding-top: 12px;
-  }
-.anchor {
-	  display: flex;
-		align-items: center;
-		justify-content: center;
-    border: 1px solid transparent;
-    padding: .75rem 2rem;
-    font-size: 1rem;
-    border-radius: .25rem;
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-		color: #fff;
-    background-color: #27AE60;
-    border-color: #27AE60;
-}
-.anchor:after {
-		display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: .5em;
-    vertical-align: .255em;
-    content: "";
-    border-top: .3em solid;
-    border-right: .28em solid transparent;
-    border-bottom: 0;
-    border-left: .28em solid transparent;
-}
-.anchor:hover {
-	color: #fff;
-	background-color: #229954;
-	border-color: #229954;
-	cursor: pointer;
-}
-.menu {
-	background-color: #fff;
-	background-clip: padding-box;
-	border: 1px solid rgba(0,0,0,.15);
-	border-radius: .25rem;
-	color: #212529;
-	cursor: pointer;
-	display: flex;
-	flex-direction: column;
-	font-size: 1rem;
-	list-style: none;
-	margin: .125rem 0 0;
-	padding: .5rem 0;
-	position: absolute;
-	text-align: left;
-}
-.menu-item {
-	color: #212529;
-	padding: .25rem 1.5rem;
-	transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-}
-.menu-item:hover {
-	background-color: #F4F6F6;
-	cursor: pointer;
-}
-span {
-	font-weight: bold;
-	color: #229954;
-	font-size: 1.25rem;
-}
-
-.card {
-    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
-    max-width: 124px;
-    margin: 12px;
-    transition: .15s all ease-in-out;
-    &:hover {
-      transform: scale(1.1);
-    }
-    a {
-      text-decoration: none;
-      padding: 12px;
-      color: #03A9F4;
-      font-size: 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      img {
-        height: 100px;
-      }
-      small {
-        font-size: 10px;
-        padding: 4px;
-      }
-    }
-  }
-#dropDown
-{
-  width:90%;
-  height:40px;
-  border:none;
-  box-shadow: 0px 0px 5px 1px grey;                   
-  border-radius: 10px;
-  outline:none;
-  margin-bottom:10px;
-  margin: auto;
-}
-            button:active {
-                background-color:rgba(155, 89, 182,0.7);
-                border-bottom: 1px solid rgba(142, 68, 173,1.0);
-                transform: translateY(4px);
-}
-li { /*hide <li> elements when added*/
-  background: #DDD;
-  padding: 5px;
-  margin: 0;/*25px*/
-  height: 0;
-  overflow: hidden;
-}
-li:hover { /*<li> ux behavior*/
-  background: #EEE;
-  border-left: 5px solid #F58025;
-  border-right: 5px solid #F58025;
-  margin: 25px 20px 25px 20px; /*this shrinks the sides the the borders won't distort*/
-}
-li.show { /*used to trigger the .swing animation*/
-  height: auto;
-  margin: 25px;
-}
-.swing li { /*dissapear animation*/
-  opacity: 0;
-  transform: rotateX(-90deg);
-  transition: all 0.5s;
-}
-.swing li.show { /*show animation*/
-  opacity: 1;
-  transform: none;
-  transition: all 0.5s;
-}
-.container,
-.center-block { /*sets the width limit for larger screens*/
-  max-width: 700px;
-}
-.buttonFlex
-{
-   display:flex;
-  flex-wrap:wrap;
-  justify-content:space-around;
-  align-items:center;
-  width:90%;
-  margin: 0px auto 20px;
-}
-option
-{
-  padding:2px;
-  text-align:center;
-  font-size:16px;
-}
-.hotpink {
-    background: hotpink;
-  }
-.green {
-    background: green;
-  }
-.box {
-    width: 100px;
-    height: 100px;
-    border: 1px solid rgba(0,0,0,.12);
-}
-}
 input {
   box-shadow: 0 0 8px rgb(250, 204, 219);
   border: none;
-padding: 4px 12px;
-      color: rgba(0,0,0,.70);
-      border: 1px solid rgba(0,0,0,.12);
-      transition: .15s all ease-in-out;
-      background: white;
+}
+input[type="text"]:focus { /*change the bootstrap text box glow color*/
+  border-color: #00aaa6;
+  box-shadow:  0 0 8px #00aaa6;
+  outline: 0 none;
 }
 li {
   margin-top: 9px;
@@ -328,10 +159,18 @@ li {
 button {
   border-radius: 14px;
   color: black;
-color: red;
-color: blue;
   box-shadow: 0 0 2px rgb(270, 220, 231);
   background: orange;
+}
+.btn { /*default button bahavior (modifies bootstrap defaults)*/
+  background-color: #00aaa6;
+  color: #444;
+  font-weight: bold;
+}
+.highlight {
+  background-color: red;
+  color: white;
+  padding: 0px 5px;
 }
 span.func {
   cursor: pointer;
@@ -345,65 +184,18 @@ ul {
   text-align: left;
   margin-left: 50px;
 }
-input[type="text"]:focus { /*change the bootstrap text box glow color*/
-  border-color: #00aaa6;
-  box-shadow:  0 0 8px #00aaa6;
-}
-.wrapper
-{
-  background-color:rgba(46, 204, 113,0.6);
-  margin:auto;
-  width:50vw;
-  display:flex;
-  flex-direction:column;
-  padding:0px 10px ;
-  margin-top:4%;
-  border-radius:1rem;
-}
-.btn { /*default button bahavior (modifies bootstrap defaults)*/
-  background-color: #00aaa6;
-  color: #444;
-  font-weight: bold;
-}
-.btn:hover,
-.btn:focus{ /*ux button bahavior (modifies bootstrap defaults)*/
-  background-color: #F58025;
-}
-p { /*This and the next reduce <li> shifting during the mouseover animation*/
-  margin-left: 5px;
-  margin-right: 5px;
-}
-li:hover p { /*as above*/
-  margin-left: 0px;
-  margin-right: 0px;
-}
-ul a:link,
-ul a:visited { /*<li> are nested within <a>, so this controlls the defualt <li> behavior*/
-  text-decoration: none;
-  color: #444;
-}
-ul a:hover,
-ul a:active{ /*as above, controlls the ux <li> behavior*/
-  text-decoration: none;
-  color: #00aaa6;
-}
 .finished {
   text-decoration: line-through;
 }
 div.delAll {
   text-decoration: none;
 }
-
 div#app {
-   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   /*text-align: center;*/
   color: #2c3e50;
-display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
   margin-top: 60px;
 }
 </style>
