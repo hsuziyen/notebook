@@ -2,7 +2,7 @@
   <div id="app">
     <div class="container">
     <div class="well">
-    <h1><label>Enter item name to filter</label></h1>
+    <label>Enter items name to filter</label>
     <h1 v-text="text"></h1>
      項目文字欄:<input type="text" v-model="newItem" v-on:keyup.enter="addNew" placeholder="Project text field" />
      修改title欄：<input type="text" v-model="text" v-on:keyup.enter="addNew" placeholder="Modify the title bar" />
@@ -17,8 +17,8 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
          下拉選單欄:<select v-model="searchText">
-	            <option v-for="item in items |filterSearch searchText in 'label'">
-                   {{ item.label }}
+	            <option v-for="item in items | filterSearch searchText in 'label'">
+                    <h1>{{ item.label }}</h1>
         </option>
 	</select>
         搜尋過濾項目欄:<input type="text" v-model="search" placeholder="Search filter column .."/>
@@ -32,8 +32,8 @@
 <!-- this vuejs cdn link -->
 <script src ="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"</script>
 <script type="text/javascript">
-import Store from './store';
 
+import Store from './store';
 export default {
   el: 'app',
   mounted() {
@@ -99,7 +99,7 @@ export default {
   },
  components: {
    filterSearch() {
-    return this.items.filter(searchResult => searchResult.items.title.match(this.searchWords));
+    return this.news.filter(searchResult => searchResult.items.title.match(this.search));
       }
      } 
    } 
