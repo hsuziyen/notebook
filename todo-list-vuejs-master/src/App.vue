@@ -31,7 +31,6 @@
 <!--  all class attributes only for style -->
 <!-- this vuejs cdn link -->
 <script src ="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"</script>
-<! --bootstrap style link just for css style -->
 <script type="text/javascript">
 import Store from './store';
 
