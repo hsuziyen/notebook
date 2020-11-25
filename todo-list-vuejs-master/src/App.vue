@@ -35,7 +35,7 @@
 import Store from './store';
 
 export default {
-  el: '#app',
+  el: 'app',
   mounted() {
      this.hasData = this.items && this.items.length ? true : true;
   },
