@@ -2,7 +2,7 @@
   <div id="app">
     <div class="container">
     <div class="well">
-    <label>Enter item name to filter</label>
+    <h1><label>Enter item name to filter</label></h1>
     <h1 v-text="text"></h1>
      項目文字欄:<input type="text" v-model="newItem" v-on:keyup.enter="addNew" placeholder="Project text field" />
      修改title欄：<input type="text" v-model="text" v-on:keyup.enter="addNew" placeholder="Modify the title bar" />
@@ -16,13 +16,13 @@
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
-         下拉選單欄:<select id="mySelect">
-         <option v-for="item in items" :value="item">{{item.label}}</option>
+         下拉選單欄:<select v-model="searchText">
+	            <option v-for="item in items |filterSearch searchText in 'label'">
+                   {{ item.label }}
+        </option>
 	</select>
-        搜尋過濾項目欄:<input type="text" id="myInput" v-model="myInput" placeholder="Search filter column .."/>
-        <br>
-        <span style="color: red">{{ msg }}</span>
-       </ul>
+        搜尋過濾項目欄:<input type="text" v-model="search" placeholder="Search filter column .."/>
+      	</ul>
         Copyright @2020 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
     </div>
@@ -43,13 +43,13 @@ export default {
   data() {
     return {
       text: 'Hello Vue!',
-      items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
+      items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'}, {label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
       itemsarray: [],
-      myInput: '',
       msg: '',
+      searchText: '',
       arraydatas: [],
       delimiters: ['${', '}'],
-      Search: '',
+      search: '',
       selected: '',
       filterSearch: '',
       option: '',
@@ -71,14 +71,9 @@ export default {
       hasData: true
     }
   },
- created: function() {
-   this.item = this.itemsarray;
-   },
   watch: {
-    items: {
-      handler(items) {
-	// console.log('prefix = ' + value);
-	this.filterSearch(value);
+   items: {
+	handler(items) {
         Store.save(items);
         this.hasData = this.items && this.items.length ? true : true;
       },
@@ -104,18 +99,11 @@ export default {
     }
   },
  components: {
-   filterSearch(prefix) {
-		this.itemsarray = this.items.filter(item => item.startsWith(prefix));
-		// console.log('itemsarray.length = ' + this.itemsarray.length);
-		if (this.itemsarray.length === 0) {
-		   this.msg = '找不到 ' + prefix + ' 開頭的資料';
-		   this.itemsarray = this.items;
-		} else {
-			this.msg = '';
-     }
-   }  
- }
-}
+   filterSearch() {
+    return this.items.filter(searchResult => searchResult.items.title.match(this.searchWords));
+      }
+     } 
+   } 
 </script>
 
 <style>
