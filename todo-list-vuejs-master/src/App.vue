@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="filter-by-example">
     <div class="container">
     <div class="well">
     <label>Enter items name to filter</label>
@@ -17,8 +17,8 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
          下拉選單欄:<select v-model="searchText">
-	            <option v-for="item in items | filterSearch searchText in 'label'">
-                    <h1>{{ item.label }}</h1>
+                <option v-for="item in items" | filterBy searchText in 'label'"></option>
+                <h1>{{ item.label }}</h1>
         </option>
 	</select>
         搜尋過濾項目欄:<input type="text" v-model="search" placeholder="Search filter column .."/>
@@ -31,38 +31,35 @@
 <!--  all class attributes only for style -->
 <!-- this vuejs cdn link -->
 <script src ="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"</script>
-<script type="text/javascript">
 
 import Store from './store';
+<script type="text/javascript">
 export default {
-  el: 'app',
+  el: '#filter-by-example',
   mounted() {
      this.hasData = this.items && this.items.length ? true : true;
   },
   data() {
     return {
       text: 'Hello Vue!',
-      items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'}, {label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
-      itemsarray: [],
-      msg: '',
+      items: [
+      { label: '101' },
+      { label: '102' },
+      { label: '103' },
+      { label: '201' },
+      { label: '202' }, 
+      { label: '300' },
+      { label: 'aaa' },
+      { label: 'abc' },
+      { label: 'bbb' }
+	],
       searchText: '',
-      arraydatas: [],
-      delimiters: ['${', '}'],
+      itemarray: [],
       search: '',
       selected: '',
       filterSearch: '',
       option: '',
-      info: [],
       filter: [],
-      filterArray: [],
-      filterText: '',
-      searchValue: "",
-      results: [],
-      isOpen: true,
-      currentlyCounter: '',
-      isShow: true,
-      loading: true,
-      loadingStyle: true,
       title: '',
       url: '',
       news: '',
@@ -98,11 +95,11 @@ export default {
     }
   },
  components: {
-   filterSearch() {
-    return this.news.filter(searchResult => searchResult.items.title.match(this.search));
+      filterSearch: function() {
+    return this.items.title.filter(searchResult => searchResult.items.match(this.search));
       }
-     } 
-   } 
+     }
+   }
 </script>
 
 <style>
