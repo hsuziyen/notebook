@@ -1,4 +1,4 @@
-<template>
+template>
   <div id="filter-by-example">
     <div class="container">
     <div class="well">
@@ -17,8 +17,8 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
          下拉選單欄:<select v-model="searchText">
-                <option v-for="item in items" | filterBy searchText in 'label'"></option>
-                <h1>{{ item.label }}</h1>
+                   <option v-for="item in items" | filterBy searchText in 'label'">
+		   <h1>{{ item.label }}</h1>
         </option>
 	</select>
         搜尋過濾項目欄:<input type="text" v-model="search" placeholder="Search filter column .."/>
@@ -54,7 +54,6 @@ export default {
       { label: 'bbb' }
 	],
       searchText: '',
-      itemarray: [],
       search: '',
       selected: '',
       filterSearch: '',
@@ -82,7 +81,7 @@ export default {
     },
     addNew() {
       if (this.newItem.trim() == '') {           
-      return 
+      return; 
       }
       if (!this.items) {
         this.items = []
