@@ -1,5 +1,5 @@
-template>
-  <div id="filter-by-example">
+<template>
+  <div id="app">
     <div class="container">
     <div class="well">
     <label>Enter items name to filter</label>
@@ -16,12 +16,12 @@ template>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
-         下拉選單欄:<select v-model="searchText">
-                   <option v-for="item in items" | filterBy searchText in 'label'">
-		   <h1>{{ item.label }}</h1>
-        </option>
-	</select>
-        搜尋過濾項目欄:<input type="text" v-model="search" placeholder="Search filter column .."/>
+        下拉選單欄:<select id="mySelect">
+          <option v-for="item in itemArray":value="item">{{item.label}}</option>
+        </select>
+        搜尋列表過濾項目欄:<input type="text" v-model="myInput" id="myInput" placeholder="Search List filtering function ..">
+         <br>
+         <span style="color: red">{{ errorMsg }}</span>
       	</ul>
         Copyright @2020 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
@@ -30,35 +30,34 @@ template>
 </template>
 <!--  all class attributes only for style -->
 <!-- this vuejs cdn link -->
-<script src ="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"</script>
+<!-- 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+-->
 
 import Store from './store';
 <script type="text/javascript">
 export default {
-  el: '#filter-by-example',
+  el: '#app',
   mounted() {
      this.hasData = this.items && this.items.length ? true : true;
   },
   data() {
     return {
       text: 'Hello Vue!',
-      items: [
-      { label: '101' },
-      { label: '102' },
-      { label: '103' },
-      { label: '201' },
-      { label: '202' }, 
-      { label: '300' },
-      { label: 'aaa' },
-      { label: 'abc' },
-      { label: 'bbb' }
-	],
+      items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
+      searchData: '',
+      value: '',
+      itemArray: [],
+      myInputitems: '',
+      errorMsg: '',
       searchText: '',
+      searchKey: '',
       search: '',
+      delimiters: ['${', '}'],
       selected: '',
-      filterSearch: '',
+      filterList: '',
       option: '',
-      filter: [],
+      filter: '',
       title: '',
       url: '',
       news: '',
@@ -66,9 +65,14 @@ export default {
       hasData: true
     }
   },
+  created: function(value) {
+    this.itemArray = this.items;
+   },
   watch: {
-   items: {
-	handler(items) {
+   myInputitems: {
+	handler(items,value)  {
+	// console.log('prefix = ' + value);
+	this.doFilter(value);
         Store.save(items);
         this.hasData = this.items && this.items.length ? true : true;
       },
@@ -93,12 +97,19 @@ export default {
       this.items = null;
     }
   },
- components: {
-      filterSearch: function() {
-    return this.items.title.filter(searchResult => searchResult.items.match(this.search));
-      }
+  components: {
+    doFilter: function(prefix) {
+      this.itemArray = this.items.filter(item => item.startsWith(prefix));
+	// console.log('itemArray.length = ' + this.itemArray.length);
+	     if (this.itemArray.length === 0) {
+		   this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
+		     this.itemArray = this.items;
+			} else {
+			  this.errorMsg = '';
+             }
+         }
      }
-   }
+  }
 </script>
 
 <style>
