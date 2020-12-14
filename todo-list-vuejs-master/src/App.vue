@@ -17,10 +17,8 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄:<select id="mySelect">
-          <option v-for="item in itemArray" :href="item.url" :value="item.id">
-          <span>{{item.label}}</span>
-        </option>
-        </select>
+          <option v-for="item in itemArray" :href="item.url" :value="item.id">{{ item.label }}</option>
+         </select>
         搜尋列表過濾項目欄:<input type="text" id="myInput" v-model="myInput" placeholder="Search List filtering function ..">
         <br>
 	<span style="color: red">{{ errorMsg }}</span>
