@@ -17,11 +17,11 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄:<select id="mySelect">
-          <option v-for="item in itemArray":value="item">{{item.label}}</option>
+          <option v-for="item in itemArray" :value="item">
+          <span>{{item.label}}</span>
+        </option>
         </select>
-        搜尋列表過濾項目欄:<input type="text" v-model="myInput" id="myInput" placeholder="Search List filtering function ..">
-         <br>
-         <span style="color: red">{{ errorMsg }}</span>
+        搜尋列表過濾項目欄:<input type="text" id="myInput" v-model="myInput" placeholder="Search List filtering function ..">
       	</ul>
         Copyright @2020 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
@@ -44,17 +44,18 @@ export default {
   data() {
     return {
       text: 'Hello Vue!',
+      searchKey: '',
       items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
       searchData: '',
       value: '',
+      selected: '',
       itemArray: [],
       myInputitems: '',
       errorMsg: '',
       searchText: '',
-      searchKey: '',
       search: '',
       delimiters: ['${', '}'],
-      selected: '',
+      mySelect: '',
       filterList: '',
       option: '',
       filter: '',
@@ -65,14 +66,12 @@ export default {
       hasData: true
     }
   },
-  created: function(value) {
+  created: function() {
     this.itemArray = this.items;
-   },
+    },
   watch: {
-   myInputitems: {
-	handler(items,value)  {
-	// console.log('prefix = ' + value);
-	this.doFilter(value);
+   items: {
+	handler(items)  {
         Store.save(items);
         this.hasData = this.items && this.items.length ? true : true;
       },
@@ -98,18 +97,15 @@ export default {
     }
   },
   components: {
-    doFilter: function(prefix) {
-      this.itemArray = this.items.filter(item => item.startsWith(prefix));
-	// console.log('itemArray.length = ' + this.itemArray.length);
-	     if (this.itemArray.length === 0) {
-		   this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
-		     this.itemArray = this.items;
-			} else {
-			  this.errorMsg = '';
-             }
-         }
-     }
+    function() {
+    	var vm = this
+      return this.items.filter(function(items) {
+      	debugger
+        return items.indexOf(vm.searchKey) !== -1
+       })
+    }
   }
+}
 </script>
 
 <style>
@@ -134,6 +130,8 @@ html, body {
   font-size:20px;
   line-height: 1.5em;
   font-family: 'Helvetica Neue', sans-serif;
+  background-color: #333;
+  color: #fff;
 }
 .container {
   text-align: center;
@@ -160,11 +158,30 @@ button {
   background-color: #00aaa6;
   color: #444;
   font-weight: bold;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  min-width: 32px;
+  min-height: 32px;
+}
+.links-others {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  margin: 10px;
+  padding: 10px;
+  background-color: #000;
+  border-radius: 5px;
+  transition: all .2s;
+  opacity: .5;
 }
 .highlight {
   background-color: red;
   color: white;
   padding: 0px 5px;
+}
+ a {
+  color: #aaf;
 }
 span.func {
   cursor: pointer;
