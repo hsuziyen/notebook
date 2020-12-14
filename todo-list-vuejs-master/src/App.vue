@@ -100,7 +100,7 @@ export default {
   },
   components: {
       filterSearch() {
-    return this.news.filter(searchResult => searchResult.items.title.match(this.searchWords));
+    return this.items.filter(searchResult => searchResult.items.title.match(this.search));
        }
     }
   }
