@@ -20,8 +20,6 @@
           <option v-for="item in itemArray" :href="item.url" :value="item.id">{{ item.label }}</option>
          </select>
         搜尋列表過濾項目欄:<input type="text" id="myInput" v-model="myInput" placeholder="Search List filtering function ..">
-        <br>
-	<span style="color: red">{{ errorMsg }}</span>
       	</ul>
         Copyright @2020 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
@@ -48,7 +46,7 @@ export default {
     return {
       text: 'Hello Vue!',
       searchKey: '',
-      items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
+      items: [{label:"101"},{label:"102"},{label:"103"},{label:"201"},{label:"202"},{label:"300"},{label:"aaa"},{label:"abc"},{label:"bbb"}],
       searchData: '',
       value: '',
       selected: '',
