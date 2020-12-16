@@ -16,10 +16,10 @@
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
-        下拉選單欄:<select id="mySelect">
-          <option v-for="item in itemArray" :href="item.url" :value="item.id">{{ item.label }}</option>
-         </select>
-        搜尋列表過濾項目欄:<input type="text" id="myInput" v-model="myInput" placeholder="Search List filtering function ..">
+        下拉選單欄：<select id="mySelect">
+        <option v-for="item in itemArray">{{ item.label }}</option>
+        </select>
+        搜尋列表過濾項目欄:<input type="text" v-model="myInput" placeholder="Search List filtering function ..">
       	</ul>
         Copyright @2020 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
@@ -40,18 +40,18 @@ export default {
      this.hasData = this.items && this.items.length ? true : true;
   },
   created: function() {
-    this.itemArray = this.items;
-    },
+   this.itemArray = this.items;
+     },
   data() {
     return {
       text: 'Hello Vue!',
       searchKey: '',
-      items: [{label:"101"},{label:"102"},{label:"103"},{label:"201"},{label:"202"},{label:"300"},{label:"aaa"},{label:"abc"},{label:"bbb"}],
+      myInput: '',
+      items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'}],
       searchData: '',
       value: '',
       selected: '',
       itemArray: [],
-      myInputitems: '',
       errorMsg: '',
       searchText: '',
       search: '',
@@ -95,11 +95,20 @@ export default {
     }
   },
   components: {
-      filterSearch() {
-    return this.items.filter(searchResult => searchResult.items.title.match(this.search));
-       }
-    }
-  }
+    filterSearch (value) {
+      var itemArray =this.items.filter(value);
+        function items(value) {
+          if (this.items === 'all') {
+            return this.items.filter(searchResult => searchResult.items.match(this.search))
+            } 
+             else {
+              return this.items.filter(searchResult => searchResult.items.match(this.search) && searchResult.items.match(this.items))
+            }
+          console.log(value);
+            }
+         }
+      }
+   }
 </script>
 
 <style>
