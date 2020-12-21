@@ -96,12 +96,12 @@ export default {
   },
   components: {
     filterItems(label) {
-      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
-      var result=items.filter(function(label,index,object) {
+      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}].filter(this.search);    
+       var items=items.filter(function(label,index,object) {
         return object.indexOf(label) ==index});
-          document.write(this.search);
-            } 
-        }
+          document.console.log(items);
+          } 
+       }
     }   
 </script>
 
