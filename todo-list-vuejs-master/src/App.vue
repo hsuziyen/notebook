@@ -17,7 +17,7 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in filterItems">{{ item.label }}</option>
+        <option v-for="item in filterSearch">{{ item.label }}</option>
         </select>
         搜尋列表過濾項目欄:<input type="text" v-model="myInput" placeholder="Search List filtering function ..">
       	</ul>
@@ -40,8 +40,8 @@ export default {
      this.hasData = this.items && this.items.length ? true : true;
   },
   created: function() {
-   this.filterItems = this.items;
-     },
+     this.filterSearch = this.items;
+   },
   data() {
     return {
       text: 'Hello Vue!',
@@ -95,14 +95,12 @@ export default {
     }
   },
   components: {
-    filterItems(label) {
-      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}].filter(this.search);    
-       var items=items.filter(function(label,index,object) {
-        return object.indexOf(label) ==index});
-          document.console.log(items);
-          } 
+    filiterSearch() {
+      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
+        return this.items.filter(item => item.label>'101'(this.search));
+          }  
        }
-    }   
+    }     
 </script>
 
 <style>
@@ -205,6 +203,7 @@ div#app {
   /*text-align: center;*/
   color: #2c3e50;
   margin-top: 60px;
+  font-family: 'Avenir LT Std', 
 }
 </style>
 
