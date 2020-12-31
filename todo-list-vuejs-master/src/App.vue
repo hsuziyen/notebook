@@ -12,12 +12,12 @@
       <ul>
         <!-- v-for loop -->
         <li v-for="(item, index) in items">
-          <span v-bind:class="{finished: item.isFinished}">{{ item.label }}</span>
+          <span v-bind:class="{finished: item.isFinished}">{{ item.value }}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in filterSearch">{{ item.label }}</option>
+        <option v-for="item in filterSearch">{{ item.value }}</option>
         </select>
         搜尋列表過濾項目欄:<input type="text" v-model="myInput" placeholder="Search List filtering function ..">
       	</ul>
@@ -47,7 +47,7 @@ export default {
       text: 'Hello Vue!',
       searchKey: '',
       myInput: '',
-      items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
+      items: [{value:'101'},{value:'102'},{value:'103'},{value:'201'},{value:'202'},{value:'300'},{value:'aaa'},{value:'abc'},{value:'bbb'}],
       searchData: '',
       value: '',
       selected: '',
@@ -87,7 +87,7 @@ export default {
       if (!this.items) {
         this.items = []
       }
-      this.items.push({label: this.newItem, isFinished: true});
+      this.items.push({value: this.newItem, isFinished: true});
       this.newItem = '';
     },
     del() {
@@ -96,8 +96,8 @@ export default {
   },
   components: {
     filiterSearch() {
-      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
-        return this.items.filter(item => item.label>'101'(this.search));
+      var items=[{value:'101'},{value:'102'},{value:'103'},{value:'201'},{value:'202'},{value:'300'},{value:'aaa'},{value:'abc'},{value:'bbb'}];
+        return this.items.filter(item => item.value>'101'(this.search));
           }  
        }
     }     
