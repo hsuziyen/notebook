@@ -87,7 +87,7 @@ export default {
       if (!this.items) {
         this.items = []
       }
-      this.items.push({value: this.newItem, isFinished: true});
+      this.items.push({label: this.newItem, isFinished: true});
       this.newItem = '';
     },
     del() {
@@ -96,13 +96,13 @@ export default {
   },
   components: {
     filiterSearch() {
-      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
+       var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
         items.filter(function(item,label,object) {
-          return item.label > 102;
-          });  
+           return item.label > 102;
+             });  
+          }
        }
-    }
- }     
+    }      
 </script>
 
 <style>
