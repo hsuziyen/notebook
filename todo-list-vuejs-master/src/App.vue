@@ -97,12 +97,13 @@ export default {
   components: {
     filiterSearch() {
        var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
-        items.filter(function(item,index,label) {
-           return item.label > 102;
-             });  
+        items.filter(function(item,index,object) {
+           return (item => item.label > '102');
+             console.log(this.search)
+               });  
+             } 
           }
-       }
-    }      
+       }      
 </script>
 
 <style>
