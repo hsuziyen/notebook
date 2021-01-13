@@ -19,7 +19,7 @@
         下拉選單欄：<select id="mySelect">
         <option v-for="item in filterSearch">{{ item.label }}</option>
         </select>
-        搜尋列表過濾項目欄:<input type="text" v-model="myInput" placeholder="Search List filtering function ..">
+        搜尋列表過濾項目欄:<input type="text" v-model="Search" placeholder="Search List filtering function ..">
       	</ul>
         Copyright @2020 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
@@ -96,13 +96,13 @@ export default {
   },
   components: {
     filiterSearch() {
-       var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
-         items.filter(function(item,index,object) {
-           return (item => item.label > '102');
-               });  
-             } 
-          }
-       }      
+      items.filter(function(item,index,object) {
+        return (item => item.label > '102');
+          console.log(this.search);
+            });  
+          } 
+       }
+   }      
 </script>
 
 <style>
