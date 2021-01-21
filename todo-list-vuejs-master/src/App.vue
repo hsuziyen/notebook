@@ -97,7 +97,7 @@ export default {
   components: {
     filiterSearch() {
       items.filter(function(item,index,object) {
-        return (item => item.label > '102');
+        for(item=0 => item.label > '102');
           console.log(this.search);
             });  
           } 
