@@ -95,14 +95,18 @@ export default {
     }
   },
   components: {
-    filiterSearch() {
+ filteredItems() {
       items.filter(function(item,index,object) {
-        for(item=0 => item.label > '102');
-          console.log(this.search);
+        for (var items = 1; item.label > 202; i++) {
+          if (items.label < 202) {
+             continue;
+               }
+                document.write(this.search);
+                  }
             });  
-          } 
+          }
        }
-   }      
+     }   
 </script>
 
 <style>
