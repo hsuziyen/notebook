@@ -17,11 +17,11 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in filterSearch">{{ item.label }}</option>
+        <option v-for="item in filteredItems">{{ item.label }}</option>
         </select>
-        搜尋列表過濾項目欄:<input type="text" v-model="Search" placeholder="Search List filtering function ..">
+        搜尋列表過濾項目欄:<input type="text" v-model="filter" placeholder="Search List filtering function ..">
       	</ul>
-        Copyright @2020 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
+        Copyright @2020-2021 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
     </div>
   </div>
@@ -40,7 +40,7 @@ export default {
      this.hasData = this.items && this.items.length ? true : true;
   },
   created: function() {
-     this.filterSearch = this.items;
+     this.filteredItems = this.items;
    },
   data() {
     return {
@@ -95,18 +95,19 @@ export default {
     }
   },
   components: {
- filteredItems() {
+    filteredItems() {
       items.filter(function(item,index,object) {
-        for (var items = 1; item.label > 202; i++) {
-          if (items.label < 202) {
-             continue;
-               }
-                document.write(this.search);
-                  }
-            });  
-          }
-       }
-     }   
+        for (var items = 0; item.label < 300; i++) {
+          if (items.label > 202) {
+            items= items +i
+              continue;
+                }
+                 document.write(this.search);
+                   }
+             });  
+           }
+        }
+     } 
 </script>
 
 <style>
