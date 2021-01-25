@@ -96,17 +96,16 @@ export default {
   },
   components: {
     filteredItems() {
-      items.filter(function(item,index,object) {
-        for (var items = 0; item.label < 300; i++) {
-          if (items.label > 202) {
-            items= items +i
-              }
-               console.log(i);
-                 }
-             });  
-           }
-        }
-     }  
+      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
+        for (var i= 0; i < items.label; i++) {
+          if (items[i]>200) {
+            console.log(i);
+              break;
+                }
+            }  
+          }
+       }
+    }  
 </script>
 
 <style>
