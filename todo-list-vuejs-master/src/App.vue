@@ -100,14 +100,13 @@ export default {
         for (var items = 0; item.label < 300; i++) {
           if (items.label > 202) {
             items= items +i
-              continue;
-                }
-                 document.write(this.search);
-                   }
+              }
+               console.log(i);
+                 }
              });  
            }
         }
-     } 
+     }  
 </script>
 
 <style>
