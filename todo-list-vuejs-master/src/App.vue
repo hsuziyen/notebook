@@ -96,8 +96,7 @@ export default {
   },
   components: {
     filteredItems() {
-      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
-        for (var i= 0; i < items.label; i++) {
+      for (var i= 0; i < items.label; i++) {
           if (items[i]>200) {
             console.log(i);
               break;
