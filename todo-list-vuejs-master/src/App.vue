@@ -96,15 +96,16 @@ export default {
   },
   components: {
     filteredItems() {
-      for (var i= 0; i < items.label; i++) {
-          if (items[i]>200) {
-            console.log(i);
-              break;
+      for(var obj of items){
+        for(var key in obj){
+           if(key=='label')
+		   if(obj['label'].match('10'))
+                     console.log(obj);
                 }
-            }  
-          }
-       }
-    }  
+              }   
+           }
+         }
+      }
 </script>
 
 <style>
