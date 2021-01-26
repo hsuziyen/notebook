@@ -96,16 +96,13 @@ export default {
   },
   components: {
     filteredItems() {
-      for(var obj of items){
-        for(var key in obj){
-           if(key=='label')
-		   if(obj['label'].match('10'))
-                     console.log(obj);
-                }
-              }   
-           }
-         }
-      }
+      for(var item of items){
+        if(item['label'].match('3'))
+          console.log(item);
+            }
+          }   
+       }
+    }
 </script>
 
 <style>
