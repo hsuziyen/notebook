@@ -97,12 +97,13 @@ export default {
   },
   components: {
     filterSearch() {
-      for(var obj of items)
-        if(obj['label'].match('2'))
-          console.log(obj);
-         }
-       }   
-     }
+      for (var label in items) {
+        if(items['label'].match('2'))
+          console.log(label, items[label])
+            }
+         }   
+      }
+   }
 </script>
 
 <style>
@@ -119,10 +120,10 @@ html, body {
   text-rendering: optimizelegibility;
   -moz-osx-font-smoothing: grayscale;
   -moz-text-size-adjust: none;
-  background: -webkit-linear-gradient(left top, #DDD, #777); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(bottom right, #DDD, #777); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(bottom right, #DDD, #777); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(to bottom right, #DDD, #777); /* Standard syntax */
+  background: -webkit-linear-gradient(left top, #DDD, #777);
+  background: -o-linear-gradient(bottom right, #DDD, #777); 
+  background: -moz-linear-gradient(bottom right, #DDD, #777); 
+  background: linear-gradient(to bottom right, #DDD, #777); 
   background-attachment: fixed;
   font-size:20px;
   line-height: 1.5em;
@@ -137,7 +138,7 @@ input {
   box-shadow: 0 0 8px rgb(250, 204, 219);
   border: none;
 }
-input[type="text"]:focus { /*change the bootstrap text box glow color*/
+input[type="text"]:focus {
   border-color: #00aaa6;
   box-shadow:  0 0 8px #00aaa6;
   outline: 0 none;
@@ -151,7 +152,7 @@ button {
   box-shadow: 0 0 2px rgb(270, 220, 231);
   background: orange;
 }
-.btn { /*default button bahavior (modifies bootstrap defaults)*/
+.btn {
   background-color: #00aaa6;
   color: #444;
   font-weight: bold;
