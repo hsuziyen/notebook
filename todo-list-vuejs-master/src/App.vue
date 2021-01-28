@@ -97,7 +97,7 @@ export default {
   },
   components: {
     filterSearch() {
-      for (var label in items) {
+      for (var label of items) {
         if(items['label'].match('2'))
           console.log(label, items[label])
             }
