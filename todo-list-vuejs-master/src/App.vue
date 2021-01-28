@@ -97,13 +97,14 @@ export default {
   },
   components: {
     filterSearch() {
-      for (var label of items) {
-        if(items['label'].match('2'))
-          console.log(label, items[label])
-            }
-         }   
-      }
-   }
+      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
+        for (var label of items) {
+          if(items['label'].match('2'))
+            console.log(label, items[label])
+              }
+           }   
+        }
+     }
 </script>
 
 <style>
