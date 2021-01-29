@@ -98,8 +98,8 @@ export default {
   components: {
     filterSearch() {
       var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
-        for (var item of items) {
-          if(items['label'].match('2'))
+        for (var item in items) {
+          if(items.label('1'))
             console.log(label, items[label])
               }
            }   
