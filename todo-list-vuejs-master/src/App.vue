@@ -98,15 +98,15 @@ export default {
   components: {
     filterSearch() {
       var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
-        for(var i=0;i>item.label;i++){
+        for(var i=0;i<item.label;i++){
             if(items.label > '201') {
               items.push(items.label);
                 } 
               }
-                 console.log(items.label);
-              } 
+                 document.write(items[i]);
           } 
-     }
+       } 
+    }
 </script>
 
 <style>
