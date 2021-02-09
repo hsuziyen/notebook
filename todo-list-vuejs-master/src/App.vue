@@ -17,9 +17,9 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in filterSearch">{{ item.label }}</option>
+        <option v-for="item in itemsFilter">{{ item.label }}</option> 
         </select>
-        搜尋列表過濾項目欄:<input type="text" v-model="filter" placeholder="Search List filtering function ..">
+        搜尋列表過濾項目欄:<input type="text" v-model="search" placeholder="Search List filtering function ..">
       	</ul>
         Copyright @2020-2021 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
@@ -39,32 +39,34 @@ export default {
   mounted() {
      this.hasData = this.items && this.items.length ? true : true;
   },
-  created: function() {
-     this.filterSearch = this.items;
+   created: function() {
+     this.itemsFilter = this.items;
    },
   data() {
     return {
       text: 'Hello Vue!',
-      searchKey: '',
-      myInput: '',
+      searchKey: ' ',
+      myInput: ' ',
+      filterText: ' ',
+      search: ' ',
       items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
-      searchData: '',
-      value: '',
+      name: ' ',
+      value: ' ',
       selected: '',
-      itemArray: [],
-      errorMsg: '',
-      searchText: '',
-      search: '',
+      filterArray: [],
+      errorMsg: ' ',
+      searchString: "",
       delimiters: ['${', '}'],
-      mySelect: '',
-      filterList: '',
-      filterSearch: '',
-      option: '',
-      filter: '',
-      title: '',
-      url: '',
-      news: '',
-      newItem: '',
+      mySelect: ' ',
+      filterList: ' ',
+      filterText: ' ',
+      filterSearch: ' ',
+      option: ' ',
+      filter: ' ',
+      title: ' ',
+      url: ' ',
+      news: ' ',
+      newItem: ' ',
       hasData: true
     }
   },
@@ -96,16 +98,14 @@ export default {
     }
   },
   components: {
-    filterSearch() {
-       var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
-        for(i=0;i<=items.label;i++) {
-          {
-            console.log(items[i]);
-              }            
-           }
+    itemsFilter() {
+      for(var obj in items){
+        if(obj['label'].match('103'))
+          console.log(obj);
+            }
+          }
         }
       }
-    }
 </script>
 
 <style>
@@ -131,6 +131,8 @@ html, body {
   line-height: 1.5em;
   font-family: 'Helvetica Neue', sans-serif;
   background-color: #333;
+  font-family: "微軟正黑體";
+  text-shadow: 0 0 0px;
   color: #fff;
 }
 .container {
