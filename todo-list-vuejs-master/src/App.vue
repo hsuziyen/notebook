@@ -17,9 +17,9 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in agentlisttwo">{{ item.label }}</option> 
+        <option v-for="item in filterShoppingList">{{ item.label }}</option>
         </select>
-        搜尋列表過濾項目欄:<input type="text" v-model="search" placeholder="Search List filtering function ..">
+        搜尋列表過濾項目欄:<input type="text" v-model="key" placeholder="Search List filtering function ..">
       	</ul>
         Copyright @2020-2021 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
@@ -40,7 +40,7 @@ export default {
      this.hasData = this.items && this.items.length ? true : true;
   },
    created: function() {
-     this.agentlisttwo = this.items;
+     this.filterShoppingList = this.items;
    },
   data() {
     return {
@@ -51,13 +51,14 @@ export default {
       search: ' ',
       keyword: ' ',
       agentlisttwo: ' ',
-      items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
+      items: [{label:"101"},{label:"102"},{label:"103"},{label:"201"},{label:"202"},{label:"300"},{label:"abc"},{label:"bbb"}],
+      key: "",
       name: ' ',
       value: ' ',
       selected: ' ',
       filterArray: [],
       errorMsg: ' ',
-      searchString: " ",
+      searchString: "",
       delimiters: ['${', '}'],
       mySelect: ' ',
       filterList: ' ',
@@ -100,17 +101,15 @@ export default {
     }
   },
   components: {
-    agentlisttwo() {
-      function search(items){
-        var item = items.filter(item => {
-          if (items.label(obj).some(item => item[label].toString().indexOf(searchValue) != -1 ) )
-             return items.label>'103';
-            })
-               return console.log(obj);
-                 }
-               }
-             }
-           }
+    filterShoppingList: function () {
+      var item = items.filter(item => {
+        if (items.label(obj).some(item => item[label].toString().indexOf(searchValue) != -1 ) )
+           return items.label>'103';
+             })
+              return console.log(obj);
+                }
+              }
+            }
 </script>
 
 <style>
