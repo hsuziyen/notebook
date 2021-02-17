@@ -105,8 +105,8 @@ export default {
         var item = items.filter(item => {
           if (items.label(obj).some(item => item[label].toString().indexOf(searchValue) != -1 ) )
              return items.label>'103';
-            });
-              return items.filter(item => item != undefined);
+            })
+               return console.log(obj);
                  }
                }
              }
