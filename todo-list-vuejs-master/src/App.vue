@@ -17,7 +17,7 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in itemsFilter">{{ item.label }}</option> 
+        <option v-for="item in agentlisttwo">{{ item.label }}</option> 
         </select>
         搜尋列表過濾項目欄:<input type="text" v-model="search" placeholder="Search List filtering function ..">
       	</ul>
@@ -40,7 +40,7 @@ export default {
      this.hasData = this.items && this.items.length ? true : true;
   },
    created: function() {
-     this.itemsFilter = this.items;
+     this.agentlisttwo = this.items;
    },
   data() {
     return {
@@ -49,13 +49,15 @@ export default {
       myInput: ' ',
       filterText: ' ',
       search: ' ',
+      keyword: ' ',
+      agentlisttwo: ' ',
       items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
       name: ' ',
       value: ' ',
-      selected: '',
+      selected: ' ',
       filterArray: [],
       errorMsg: ' ',
-      searchString: "",
+      searchString: " ",
       delimiters: ['${', '}'],
       mySelect: ' ',
       filterList: ' ',
@@ -98,14 +100,17 @@ export default {
     }
   },
   components: {
-    itemsFilter() {
-      for(var obj in items){
-        if(obj['label'].match('103'))
-          console.log(obj);
-            }
-          }
-        }
-      }
+    agentlisttwo() {
+      function search(items){
+        var item = items.filter(item => {
+          if (items.label(obj).some(item => item[label].toString().indexOf(searchValue) != -1 ) )
+             return items.label>'103';
+            });
+              return items.filter(item => item != undefined);
+                 }
+               }
+             }
+           }
 </script>
 
 <style>
