@@ -103,11 +103,13 @@ export default {
   components: {
     searchData: function() {     
       var search = this.search;
-        if (search) {
+        if (item.label>='103') {
           return this.items.filter(item => item.label.indexOf(this.search) !== -1)
-             }
-              return this.items;
-                }
+            }else
+               {
+                return this.items(obj);
+                  }
+               }
             }
          }
 </script>
