@@ -104,7 +104,7 @@ export default {
     filterProductsByCategory: function(){
       var items=[{label:"101"},{label:"102"},{label:"103"},{label:"201"},{label:"202"},{label:"300"},{label:"abc"},{label:"bbb"}];
         for(var items=0;items<=item.label,i++;)     
-          return this.items.filter(item => !item.label.indexOf(this.search))
+          return this.items.filter(item => !item.label.match.indexOf!=1(this.search))
             }
           }
         }
