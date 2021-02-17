@@ -102,10 +102,12 @@ export default {
   },
   components: {
     filterProductsByCategory: function(){
-      return this.items.filter(item => !item.label.indexOf(this.search))
+      var items=[{label:"101"},{label:"102"},{label:"103"},{label:"201"},{label:"202"},{label:"300"},{label:"abc"},{label:"bbb"}];
+        for(var item=0;item<=items.label,i++;)     
+          return this.items.filter(item => !item.label.indexOf(this.search))
+            }
+          }
         }
-      }
-    }
 </script>
 
 <style>
