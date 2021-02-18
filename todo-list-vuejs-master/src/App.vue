@@ -17,9 +17,9 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in filteredList">{{ item.label }}</option>
+        <option v-for="item in itemsFilter">{{item.label}}</option>
         </select>
-        搜尋列表過濾項目欄:<input type="text" v-model="filterText" placeholder="Search List filtering function ..">
+        搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
       	</ul>
         Copyright @2020-2021 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
@@ -34,20 +34,14 @@
 
 import Store from './store';
 <script type="text/javascript">
-class Post {
-  constructor(title, link, author, img) {
-    this.title = title;
-    this.items = item;
-    this.label = label
-  }
-}
+
 export default {
   el: '#app',
   mounted() {
      this.hasData = this.items && this.items.length ? true : true;
   },
    created: function() {
-     this.filteredList = this.items;
+     this.itemsFilter = this.items;
    },
   data() {
     return {
@@ -55,10 +49,10 @@ export default {
       searchKey: ' ',
       myInput: ' ',
       filterText: ' ',
-      search: ' ',
       keyword: ' ',
       agentlisttwo: ' ',
       items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
+      search: ' ',
       key: "",
       name: ' ',
       value: ' ',
@@ -108,16 +102,17 @@ export default {
     }
   },
   components: {
-    filteredList() {
-      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
-        var obj={num};
-          var items=items.filter(function(item) {
-            return item.label >this.num;
-              },obj);
-                console.log(items);
-                  }
+    itemsFilter (){
+      var temp = []
+        this.items.filter(item => {
+          if(item.label.includes(this.search)){
+            items.push(item);
+              }
+            })   
+             return temp
                }
-            }
+       }
+    }
 </script>
 
 <style>
