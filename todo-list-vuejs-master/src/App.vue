@@ -46,31 +46,31 @@ export default {
   data() {
     return {
       text: 'Hello Vue!',
-      searchKey: ' ',
-      myInput: ' ',
-      filterText: ' ',
-      keyword: ' ',
-      agentlisttwo: ' ',
+      searchKey: '',
+      myInput: '',
+      filterText: '',
+      keyword: '',
+      agentlisttwo: '',
       items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
-      search: ' ',
+      search: '',
       key: "",
-      name: ' ',
-      value: ' ',
-      selected: ' ',
+      name: '',
+      value: '',
+      selected: '',
       filterArray: [],
-      errorMsg: ' ',
+      errorMsg: '',
       searchString: "",
       delimiters: ['${', '}'],
-      mySelect: ' ',
-      filterList: ' ',
-      filterText: ' ',
-      filterSearch: ' ',
-      option: ' ',
-      filter: ' ',
-      title: ' ',
-      url: ' ',
-      news: ' ',
-      newItem: ' ',
+      mySelect: '',
+      filterList: '',
+      filterText: '',
+      filterSearch: '',
+      option: '',
+      filter: '',
+      title: '',
+      url: '',
+      news: '',
+      newItem: '',
       hasData: true
     }
   },
@@ -103,13 +103,13 @@ export default {
   },
   components: {
     itemsFilter (){
-      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}]
+      var hasData=this.items[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
         items.filter(items => {
           if(items.label.includes(this.search)){
-            items.label.push(items);
+            items.label.push(this.hasData);
               }
             })   
-             return items
+             return this.hasData
                }
        }
     }
