@@ -106,10 +106,10 @@ export default {
       var hasData=this.items[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
         items.filter(items => {
           if(items.label.includes(this.search)){
-            items.label.push(this.hasData);
+            this.items.push(this.hasData);
               }
             })   
-             return this.hasData
+             return this.items=this.hasData(this.search)
                }
        }
     }
