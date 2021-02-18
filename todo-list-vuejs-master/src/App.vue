@@ -17,7 +17,7 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in filteredItems">{{ item.label }}</option>
+        <option v-for="item in filteredList">{{ item.label }}</option>
         </select>
         搜尋列表過濾項目欄:<input type="text" v-model="filterText" placeholder="Search List filtering function ..">
       	</ul>
@@ -34,13 +34,20 @@
 
 import Store from './store';
 <script type="text/javascript">
+class Post {
+  constructor(title, link, author, img) {
+    this.title = title;
+    this.items = item;
+    this.label = label
+  }
+}
 export default {
   el: '#app',
   mounted() {
      this.hasData = this.items && this.items.length ? true : true;
   },
    created: function() {
-     this.filteredItems = this.items;
+     this.filteredList = this.items;
    },
   data() {
     return {
@@ -101,13 +108,16 @@ export default {
     }
   },
   components: {
-    filteredItems: function(){
-      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'abc'},{label:'bbb'}];
-        for(var items=0;items<=item.label,i++;)     
-          return this.items.filter(item => !item.label.match.indexOf!=1(this.search))
+    filteredList() {
+      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
+        var obj={num};
+          var items=items.filter(function(item) {
+            return item.label >this.num;
+              },obj);
+                console.log(items);
+                  }
+               }
             }
-          }
-        }
 </script>
 
 <style>
