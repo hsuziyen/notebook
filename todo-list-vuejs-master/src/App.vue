@@ -20,8 +20,6 @@
         <option v-for="item in itemsFilter">{{item.label}}</option>
         </select>
         搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
-        <br>
-        <span style="color: red">{{ errorMsg }}</span>
       	</ul>
         Copyright @2020-2021 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
@@ -109,13 +107,12 @@ export default {
         this.items.filter(item => {
           if(item.label.includes(this.search)){	
             items.push(item);
-              this.errorMsg = this.items.label;
+               }
+            })   
+              return items
                 }
-              })   
-               return items
-                 }
-          }
-       }
+         }
+      }
 </script>
 
 <style>
