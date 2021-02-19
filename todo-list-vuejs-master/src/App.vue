@@ -80,7 +80,7 @@ export default {
     }
   },
   components: {
-    itemsFilter:function (prefix){
+    itemsFilter:function (items){
       var items = [];
         this.items.filter(item => {
           if(items.label.match.includes(this.search)){	
