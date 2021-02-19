@@ -29,7 +29,7 @@
 <!--  all class attributes only for style -->
 <!-- this vuejs cdn link -->
 <!-- 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
 -->
 
 import Store from './store';
