@@ -2,7 +2,7 @@
   <div id="app">
     <div class="container">
     <div class="well">
-    <label>Enter items name to filter</label>
+    <label>Enter todo items name page to filter</label>
     <h1 v-text="text"></h1>
      項目文字欄:<input type="text" v-model="newItem" v-on:keyup.enter="addNew" placeholder="Project text field" />
      修改title欄：<input type="text" v-model="text" v-on:keyup.enter="addNew" placeholder="Modify the title bar" />
@@ -168,9 +168,10 @@ button {
   padding: 0px 5px;
 }
  a {
-  color: #aaf;
+   color: #aaf;
    font-weight: bold;
-    color: #2c3e50;
+   color: #2c3e50;
+   color: #42b983;
 } 
 .router-link-exact-active {
       color: #42b983;
