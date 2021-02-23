@@ -91,6 +91,7 @@ export default {
                 }
               })   
                 return items
+                  console.log(item);
                   }
           }
        }
