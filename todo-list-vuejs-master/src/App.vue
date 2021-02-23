@@ -20,6 +20,7 @@
 
 <script>
 import Store from './store';
+
 export default {
   name: 'app',
   mounted() {
@@ -80,6 +81,7 @@ button {
   color: black;
   box-shadow: 0 0 2px rgb(70, 120, 231);
   background: none;
+
 }
 span.func {
   cursor: pointer;
@@ -107,4 +109,4 @@ div.delAll {
   color: #2c3e50;
   margin-top: 60px;
 }
-</style>0
+</style>
