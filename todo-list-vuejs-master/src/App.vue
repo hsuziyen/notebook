@@ -83,11 +83,11 @@ export default {
   },
   components: {
     itemsFilter:function (items){
-      var items = [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'} ]
+      var items = []
         for(i=0;i<item.label,i++;)
           this.items.filter(item => {
-            if(items.label.match.includes(this.search)){
-              items.label.push(item);
+            if(item.label.includes(this.search)){
+              items.push(item);
                 }
               })   
                 return items
