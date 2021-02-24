@@ -83,18 +83,18 @@ export default {
   },
   components: {
     itemsFilter:function (items){
-      var items = []
-        for(i=0;i<item.label,i++;)
+      var items=[];
+        for(i=0;i<items.label;i++) {
           this.items.filter(item => {
-            if(item.label.includes(this.search)){
-              items.push(item);
-                }
-              })   
-                return items
-                  console.log(item);
-                    }
-          }
-       }
+          if(items.label%2==0(this.search)) {
+            items.push(items)
+              }
+           })
+               console.log(items)
+                 }
+        }
+     }
+  }
 </script>
 
 <style>
