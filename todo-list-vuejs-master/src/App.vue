@@ -130,6 +130,11 @@ html, body {
 input {
   box-shadow: 0 0 8px rgb(250, 204, 219);
   border: none;
+  padding: 4px 12px;
+  color: rgba(0,0,0,.70);
+  border: 1px solid rgba(0,0,0,.12);
+  transition: .15s all ease-in-out;
+  background: white;
 }
 input[type="text"]:focus {
   border-color: #00aaa6;
@@ -155,6 +160,21 @@ button {
   min-width: 32px;
   min-height: 32px;
 }
+.search-wrapper {
+    position: relative;
+}
+ .wrapper {
+    display: flex;
+    max-width: 444px;
+    flex-wrap: wrap;
+    padding-top: 12px;
+}
+  .card {
+    box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+    max-width: 124px;
+    margin: 12px;
+    transition: .15s all ease-in-out;
+}
 .links-others {
   position: fixed;
   left: 0;
@@ -176,10 +196,35 @@ button {
    font-weight: bold;
    color: #2c3e50;
    color: #42b983;
+   text-decoration: none;
+   padding: 12px;
+   color: #03A9F4;
+   font-size: 24px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+ img {
+    height: 100px;
+ }
+ small {
+        font-size: 10px;
+        padding: 4px;
 } 
 .router-link-exact-active {
       color: #42b983;
 }
+.hotpink {
+    background: hotpink;
+  }
+ .green {
+    background: green;
+  }
+  .box {
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgba(0,0,0,.12);
+  }
 span.func {
   cursor: pointer;
   margin-left: 7px;
@@ -205,7 +250,7 @@ div#app {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  font-family: 'Avenir LT Std', 
+  font-family: 'Avenir LT Std',
 }
 </style>
 
