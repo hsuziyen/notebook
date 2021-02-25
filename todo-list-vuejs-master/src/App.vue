@@ -87,10 +87,10 @@ export default {
         for(i=0;i<items.label;i++) {
           this.items.filter(item => {
           if(items.label%2==0(this.search)) {
-            return items.push(items)
+            return this.items.push({label: this.newItem})
               }
            })            
-             console.log(items)
+             console.log({label: this.newItem})
                }
         }
      }
