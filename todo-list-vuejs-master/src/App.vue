@@ -82,7 +82,7 @@ export default {
     }
   },
   components: {
-    itemsFilter:function (items){
+    itemsFilter:function (item){
       var items=[];
         for(i=0;i<items.label;i++) {
           this.items.filter(item => {
