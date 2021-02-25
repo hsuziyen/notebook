@@ -83,7 +83,7 @@ export default {
   },
   components: {
     itemsFilter:function (item){
-      var items=[];
+      var items= [];
         for(i=0;i<items.label;i++) {
           this.items.filter(item => {
           if(items.label%2==0(this.search)) {
