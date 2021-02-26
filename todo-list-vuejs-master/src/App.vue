@@ -51,6 +51,7 @@ export default {
       filterArray: "",
       filterText: "",
       newItem: '',
+      newItem: '',
       hasData: true
     }
   },
