@@ -17,7 +17,7 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in  itemsFilter">{{ item.label }}</option>
+        <option v-for="item in itemsFilter">{{ item.label }}</option>
         </select>
         搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
       	</ul>
@@ -83,7 +83,7 @@ export default {
     }
   },
   components: {
-    itemsFilter:function (item){
+     itemsFilter:function (item){
       var items= [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
         for(i=0;i<items.label;i++) {
           var filtered=this.items.filter(function(items,index,arr) {
@@ -95,7 +95,7 @@ export default {
                   }
            }
         }
-     }
+     }    
 </script>
 
 <style>
@@ -113,9 +113,9 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   -moz-text-size-adjust: none;
   background: -webkit-linear-gradient(left top, #DDD, #777);
-  background: -o-linear-gradient(bottom right, #DDD, #777); 
-  background: -moz-linear-gradient(bottom right, #DDD, #777); 
-  background: linear-gradient(to bottom right, #DDD, #777); 
+  background: -o-linear-gradient(bottom right, #DDD, #777);
+  background: -moz-linear-gradient(bottom right, #DDD, #777);
+  background: linear-gradient(to bottom right, #DDD, #777);
   background-attachment: fixed;
   font-size:20px;
   line-height: 1.5em;
@@ -211,7 +211,7 @@ button {
  small {
         font-size: 10px;
         padding: 4px;
-} 
+}
 .router-link-exact-active {
       color: #42b983;
 }
