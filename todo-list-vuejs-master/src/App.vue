@@ -83,19 +83,22 @@ export default {
     }
   },
   components: {
-     itemsFilter:function (item){
+    itemsFilter:function (item){
       var items= [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
         for(i=0;i<items.label;i++) {
-          var filtered=this.items.filter(function(items,index,arr) {
-            if(items.label>'201'(this.search)) {
-              return items.label.push(filtered);
+          var items=this.items.filter(function(items,index,arr) {
+            if(items.label=='all'(this.search)) {
+              return items.label == this.items;
+              }
+            else {
+              return items.label.push(items);
                 }
               })            
-                console.log(filtered);
-                  }
+               console.log(items);
+                 }
            }
         }
-     }    
+     } 
 </script>
 
 <style>
