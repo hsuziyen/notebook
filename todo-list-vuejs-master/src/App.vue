@@ -88,10 +88,10 @@ export default {
         for(i=0;i<items.label;i++) {
           var item=this.items.filter(function(items,index,arr) {
             if(items.label==''(this.search)) {
-              return items.label == this.items;
+              return true;
                 }
                  else {
-                   return items.label.push>-1(items);
+                   return items.label.indexof(items)>-1;
                      }
                    })            
                       console.log(items);
