@@ -17,7 +17,7 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in itemsFilter">{{ item.label }}</option>
+	<option v-for="item in filtereditems">{{ item.label }}</option>
         </select>
         搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
       	</ul>
@@ -41,7 +41,7 @@ export default {
      this.hasData = this.items && this.items.length ? true : true;
   },
    created: function() {
-     this.itemsFilter = this.items;
+     this.filtereditems = this.items;
    },
   data() {
     return {
@@ -83,10 +83,10 @@ export default {
     }
   },
   components: {
-    itemsFilter:function (item){
+    filtereditems (){
       var item=this.items;
         for(i=0;i<items.label;i++) {
-          var items=this.items.filter(function(items,index,arr) {
+          var item=this.items.filter(function(items,index,arr) {
             if(items.label=='all'(this.search)) {
               return items.label == this.items;
                 }
