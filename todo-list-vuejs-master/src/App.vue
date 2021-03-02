@@ -87,7 +87,7 @@ export default {
       var search=this.items;
         for(i=0;i<items.label;i++) {
           var items=this.items.filter(function(items,index,arr) {
-            if(items.label=='all'(this.search)) {
+            if(items.label==''(this.search)) {
               return items.label == this.items;
               }
             else {
