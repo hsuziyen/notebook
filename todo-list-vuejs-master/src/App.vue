@@ -48,6 +48,8 @@ export default {
       text: 'Hello Vue!',
       search: '',
       items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
+      itemArray: [],
+      myInput: '',
       filterArray: "",
       filterText: "",
       newItem: '',
@@ -84,21 +86,12 @@ export default {
   },
   components: {
     filtereditems (){
-      var item=this.items;
-        for(i=0;i<items.label;i++) {
-          var item=this.items.filter(function(items,index,arr) {
-            if(items.label==''(this.search)) {
-              return true;
-                }
-                 else {
-                   return items.label.indexof(items)>-1;
-                     }
-                   })            
-                      console.log(items);
-                        }
-            }
-         }
+      return this.items.filter(item => {
+        return items.label.toLowerCase().includes(this.search.toLowerCase())
+          })
+        }
       }
+    }
 </script>
 
 <style>
