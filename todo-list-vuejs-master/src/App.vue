@@ -86,12 +86,21 @@ export default {
   },
   components: {
     filtereditems (){
-      return this.items.filter(item => {
-        return items.label.toLowerCase().includes(this.search.toLowerCase())
-          })
-        }
+      var item=this.items;
+        for(i=0;i<items.label;i++) {
+          var item=this.items.filter(function(items,index,arr) {
+            if(items.label==''(this.search)) {
+              return true;
+                }
+                 else {
+                   return items.label.indexof(items)>-1;
+                     }
+                   })            
+                      console.log(items);
+                        }
+            }
+         }
       }
-    }
 </script>
 
 <style>
