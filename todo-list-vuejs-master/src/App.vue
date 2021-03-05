@@ -77,7 +77,7 @@ export default {
       if (!this.items) {
         this.items = []
       }
-      this.items.push({label: this.newItem, isFinished: true});
+      this.items.push({value: this.newItem, isFinished: true});
       this.newItem = '';
     },
     del() {
