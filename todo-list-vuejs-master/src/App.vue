@@ -63,9 +63,9 @@ export default {
       },
       deep: true
      },
-    search: function(value) {
-           console.log('prefix = ' + value);
-          this.doFilter(value);
+    search: function(items) {
+           console.log('itemArray = ' + items);
+          this.doFilter(itemArray);
       }
   },
   methods: {
@@ -73,7 +73,7 @@ export default {
       item.isFinished = !item.isFinished;
     },
     addNew() {
-      console.log('addnew');
+      console.log('items');
       if (this.newItem.trim() == '') {           
       return;
       }
@@ -89,13 +89,13 @@ export default {
   },
   components: {
     doFilter: function(prefix) {
-      this.itemArray = this.items.filter(item => item.label.startsWith(prefix));
+      this.itemArray = this.items.filter(item => items.label.startsWith(items));
         console.log('itemArray.length = ' + this.itemArray.length);
           if (this.itemArray.length === 0) {
-            this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
+            this.itemArray = '找不到 ' + items + ' 開頭的資料';
             this.itemArray = this.items;
           } else {
-            this.errorMsg = '';
+            this.itemArray = '';
         }
       }
     }
