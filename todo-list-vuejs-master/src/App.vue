@@ -17,7 +17,7 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-	<option v-for="item in filtereditems">{{ item.label }}</option>
+        <option v-for="item in itemArray">{{ item.label }}</option>
         </select>
         搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
       	</ul>
@@ -41,18 +41,16 @@ export default {
      this.hasData = this.items && this.items.length ? true : true;
   },
    created: function() {
-     this.filtereditems = this.items;
+     this.itemArray = this.items;
    },
   data() {
     return {
       text: 'Hello Vue!',
-      search: '',
       items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
-      itemArray: [],
-      myInput: '',
+      search: '',
       filterArray: "",
       filterText: "",
-      newItem: '',
+      itemArray:[],
       newItem: '',
       hasData: true
     }
@@ -64,7 +62,11 @@ export default {
         this.hasData = this.items && this.items.length ? true : true;
       },
       deep: true
-    }
+     },
+    search: function(value) {
+           console.log('prefix = ' + value);
+          this.doFilter(value);
+      }
   },
   methods: {
     toggle(item) {
@@ -85,22 +87,19 @@ export default {
     }
   },
   components: {
-    filtereditems (){
-      var item=this.items;
-        for(i=0;i<items.label;i++) {
-          var item=this.items.filter(function(items,index,arr) {
-            if(items.label==''(this.search)) {
-              return true;
-                }
-                 else {
-                   return items.label.indexof(items)>-1;
-                     }
-                   })            
-                      console.log(items);
-                        }
-            }
-         }
+    doFilter: function(prefix) {
+      this.itemArray = this.items.filter(item => item.label.startsWith(prefix));
+        console.log('itemArray.length = ' + this.itemArray.length);
+          if (this.itemArray.length === 0) {
+            this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
+            this.itemArray = this.items;
+          } else {
+            this.errorMsg = '';
+          }
+          console.log('addnew');
+        }
       }
+    }
 </script>
 
 <style>
