@@ -57,11 +57,11 @@ export default {
   },
   watch: {
    items: {
-	handler(items)  {
-        Store.save(items);
-        this.hasData = this.items && this.items.length ? true : true;
-      },
-      deep: true
+     //handler(items)  {
+       //Store.save(items);
+         //this.hasData = this.items && this.items.length ? true : true;
+     // },
+       // deep: true
      },
     search: function(items) {
            console.log('itemArray = ' + items);
@@ -73,7 +73,6 @@ export default {
       item.isFinished = !item.isFinished;
     },
     addNew() {
-      console.log('items');
       if (this.newItem.trim() == '') {           
       return;
       }
@@ -97,6 +96,8 @@ export default {
           } else {
             this.itemArray = '';
         }
+          console.log('itemArray');
+
       }
     }
   }
