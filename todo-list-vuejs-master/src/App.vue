@@ -73,13 +73,14 @@ export default {
       item.isFinished = !item.isFinished;
     },
     addNew() {
+      console.log('addnew');
       if (this.newItem.trim() == '') {           
       return;
       }
       if (!this.items) {
         this.items = []
       }
-      this.items.push({value: this.newItem, isFinished: true});
+      this.items.push({label: this.newItem, isFinished: true});
       this.newItem = '';
     },
     del() {
@@ -95,11 +96,10 @@ export default {
             this.itemArray = this.items;
           } else {
             this.errorMsg = '';
-          }
-          console.log('addnew');
         }
       }
     }
+  }
 </script>
 
 <style>
