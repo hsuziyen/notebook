@@ -95,12 +95,11 @@ export default {
             this.itemArray = this.items;
           } else {
             this.itemArray = '';
-        }
+              }
           console.log('itemArray');
-
-      }
+            }
+       }
     }
-  }
 </script>
 
 <style>
