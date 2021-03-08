@@ -87,7 +87,7 @@ export default {
     }
   },
   components: {
-    doFilter: function(prefix) {
+    doFilter: function(items) {
       this.itemArray = this.items.filter(item => items.label.startsWith(items));
         console.log('itemArray.length = ' + this.itemArray.length);
           if (this.itemArray.length === 0) {
