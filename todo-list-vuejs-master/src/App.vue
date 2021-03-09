@@ -12,14 +12,16 @@
       <ul>
         <!-- v-for loop -->
         <li v-for="(item, index) in items">
-          <span v-bind:class="{finished: item.isFinished}">{{ item.name }}</span>
+          <span v-bind:class="{finished: item.isFinished}">{{ item.label }}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in itemArray">{{ item.name }}</option>
+        <option v-for="item in itemArray">{{ item.label }}</option>
         </select>
         搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
+         <br>
+          <span style="color: red">{{ errorMsg }}</span>
       	</ul>
         Copyright @2020-2021 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
@@ -46,7 +48,7 @@ export default {
   data() {
     return {
       text: 'Hello Vue!',
-      items: [{name:'Nina'},{name:'Frank'},{name:'Marble'}],
+      items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
       search: '',
       filterArray: "",
       filterText: "",
@@ -63,9 +65,9 @@ export default {
      // },
        // deep: true
      },
-    search: function(item) {
-           console.log('itemArray = ' + items);
-          this.doFilter(items);
+     search: function(value) {
+           console.log('prefix = ' + value);
+          this.doFilter(value);
       }
   },
   methods: {
@@ -79,7 +81,7 @@ export default {
       if (!this.items) {
         this.items = []
       }
-      this.items.push({name: this.newItem, isFinished: true});
+      this.items.push({label: this.newItem, isFinished: true});
       this.newItem = '';
     },
     del() {
@@ -87,19 +89,18 @@ export default {
     }
   },
   components: {
-    doFilter: function(item) {
-      this.itemArray = this.items.filter(item => items.name.startsWith(item));
-        console.log('itemArray.length = ' + this.itemArray.length);
-          if (this.itemArray.length === 0) {
-            this.itemArray = '找不到 ' + items + ' 開頭的資料';
-            this.itemArray = this.items;
-          } else {
-            this.itemArray = '';
-              }
-          console.log('items');
-            }
+    doFilter: function(prefix) {
+      this.itemArray = this.items.filter(item => items.label.startsWith(prefix));
+         console.log('itemArray.length = ' + this.itemArray.length);
+           if (this.itemArray.length === 0) {
+             this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
+               this.itemArray = this.items;
+                 } else {
+                    this.errorMsg = '';
+                      }
+                 }
+            }    
        }
-    }
 </script>
 
 <style>
