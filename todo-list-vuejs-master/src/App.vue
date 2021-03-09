@@ -12,12 +12,12 @@
       <ul>
         <!-- v-for loop -->
         <li v-for="(item, index) in items">
-          <span v-bind:class="{finished: item.isFinished}">{{ item.label }}</span>
+          <span v-bind:class="{finished: item.isFinished}">{{ item.name }}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in itemArray">{{ item.label }}</option>
+        <option v-for="item in itemArray">{{ item.name }}</option>
         </select>
         搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
       	</ul>
@@ -46,7 +46,7 @@ export default {
   data() {
     return {
       text: 'Hello Vue!',
-      items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
+      items: [{name:'Nina'},{name:'Frank'},{name:'Marble'}],
       search: '',
       filterArray: "",
       filterText: "",
@@ -63,9 +63,9 @@ export default {
      // },
        // deep: true
      },
-    search: function(items) {
+    search: function(item) {
            console.log('itemArray = ' + items);
-          this.doFilter(itemArray);
+          this.doFilter(items);
       }
   },
   methods: {
@@ -79,7 +79,7 @@ export default {
       if (!this.items) {
         this.items = []
       }
-      this.items.push({label: this.newItem, isFinished: true});
+      this.items.push({name: this.newItem, isFinished: true});
       this.newItem = '';
     },
     del() {
@@ -87,8 +87,8 @@ export default {
     }
   },
   components: {
-    doFilter: function(items) {
-      this.itemArray = this.items.filter(item => items.label.startsWith(items));
+    doFilter: function(item) {
+      this.itemArray = this.items.filter(item => items.name.startsWith(item));
         console.log('itemArray.length = ' + this.itemArray.length);
           if (this.itemArray.length === 0) {
             this.itemArray = '找不到 ' + items + ' 開頭的資料';
@@ -96,7 +96,7 @@ export default {
           } else {
             this.itemArray = '';
               }
-          console.log('itemArray');
+          console.log('items');
             }
        }
     }
