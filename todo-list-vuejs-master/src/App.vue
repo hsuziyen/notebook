@@ -12,12 +12,12 @@
       <ul>
         <!-- v-for loop -->
         <li v-for="(item, index) in items">
-          <span v-bind:class="{finished: item.isFinished}">{{ item.label }}</span>
+          <span v-bind:class="{finished: item.isFinished}">{{ item }}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in itemArray">{{ item.label }}</option>
+        <option v-for="item in itemArray">{{ item }}</option>
         </select>
         搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
          <br>
@@ -37,7 +37,7 @@
 import Store from './store';
 <script type="text/javascript">
 
-export default {
+ export default {
   el: '#app',
   mounted() {
      this.hasData = this.items && this.items.length ? true : true;
@@ -48,7 +48,7 @@ export default {
   data() {
     return {
       text: 'Hello Vue!',
-      items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
+      items: ['101','102','103','201','202','300','aaa','abc','bbb'],
       search: '',
       filterArray: "",
       filterText: "",
@@ -81,7 +81,7 @@ export default {
       if (!this.items) {
         this.items = []
       }
-      this.items.push({label: this.newItem, isFinished: true});
+      this.items.push({items: this.newItem, isFinished: true});
       this.newItem = '';
     },
     del() {
