@@ -19,7 +19,7 @@
         下拉選單欄：<select id="mySelect">
         <option v-for="item in itemArray" :value="item">{{ item.label }}</option>
         </select>
-        搜尋過濾項目欄：<input type="text" id="myInut" v-model="search" placeholder="Search List filtering function ..">
+        搜尋過濾項目欄：<input type="text" id="myInut" v-model="myInput" placeholder="Search List filtering function ..">
          <br>
           <span style="color: red">{{ errorMsg }}</span>
       	</ul>
