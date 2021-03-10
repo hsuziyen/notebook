@@ -17,9 +17,9 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in itemArray" :value="item">{{ item.label }}</option>
+        <option v-for="item in itemArray" :value="item.label">{{ item.label }}</option>
         </select>
-        搜尋過濾項目欄：<input type="text" id="myInut" v-model="myInput" placeholder="Search List filtering function ..">
+        搜尋過濾項目欄：<input type="text" id="search" v-model="search" placeholder="Search List filtering function ..">
          <br>
           <span style="color: red">{{ errorMsg }}</span>
       	</ul>
@@ -49,7 +49,7 @@ import Store from './store';
     return {
       text: 'Hello Vue!',
       items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
-      myInput: '',
+      search: '',
       filterArray: "",
       filterText: "",
       itemArray:[],
@@ -65,7 +65,7 @@ import Store from './store';
       },
         deep: true
      },
-      myInput: function(value) {
+      search: function(value) {
         console.log('prefix = ' + value);
           this.doFilter(value);
       }
