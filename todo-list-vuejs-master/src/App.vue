@@ -38,7 +38,7 @@ import Store from './store';
 <script type="text/javascript">
 
  export default {
-  el: '#app',
+  name: 'app',
   mounted() {
      this.hasData = this.items && this.items.length ? true : true;
   },
@@ -250,7 +250,7 @@ ul {
 div.delAll {
   text-decoration: none;
 }
-div#app {
+#app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
