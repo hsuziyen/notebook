@@ -75,6 +75,7 @@ import Store from './store';
       item.isFinished = !item.isFinished;
     },
     addNew() {
+      console.log('addnew');
       if (this.newItem.trim() == '') {           
       return;
       }
