@@ -59,14 +59,14 @@ import Store from './store';
   },
   watch: {
    items: {
-     //handler(items)  {
-       //Store.save(items);
-         //this.hasData = this.items && this.items.length ? true : true;
-     // },
-       // deep: true
+     handler(items)  {
+       Store.save(items);
+         this.hasData = this.items && this.items.length ? true : true;
+      },
+        deep: true
      },
-     search: function(value) {
-           console.log('prefix = ' + value);
+      search: function(value) {
+        console.log('prefix = ' + value);
           this.doFilter(value);
       }
   },
