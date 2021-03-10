@@ -91,17 +91,17 @@ import Store from './store';
   },
   components: {
     doFilter: function(prefix) {
-     this.itemArray = this.items.filter(item => item.label.match(this.searchwords));
-       console.log('itemArray.length = ' + this.itemArray.length);
-         if (this.itemArray.length === 0) {
-           this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
-             this.itemArray = this.items;
-           } else {
-              this.errorMsg = '';
-                }
-             }
-          }    
-       }
+      this.itemArray = this.items.filter(item => item.label.startsWith(prefix));
+        console.log('itemArray.length = ' + this.itemArray.length);
+          if (this.itemArray.length === 0) {
+            this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
+              this.itemArray = this.items;
+                } else {
+                   this.errorMsg = '';
+                     }
+                 }
+             }  
+         }
 </script>
 
 <style>
