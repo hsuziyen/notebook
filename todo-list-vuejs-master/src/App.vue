@@ -91,7 +91,7 @@ import Store from './store';
   },
   components: {
     doFilter: function(prefix) {
-     this.itemArray = this.items.filter(item => item.label.startsWith(prefix));
+     this.itemArray = this.items.filter(item => item.label.match(this.searchwords));
        console.log('itemArray.length = ' + this.itemArray.length);
          if (this.itemArray.length === 0) {
            this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
@@ -256,8 +256,4 @@ div.delAll {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-  font-family: 'Avenir LT Std',
-}
-</style>
 
