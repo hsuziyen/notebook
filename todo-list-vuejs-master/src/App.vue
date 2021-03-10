@@ -90,7 +90,7 @@ import Store from './store';
   },
   components: {
     doFilter: function(prefix) {
-      this.itemArray = this.items.filter(item => items.label.startsWith(prefix));
+      this.itemArray = this.items.filter;
          console.log('itemArray.length = ' + this.itemArray.length);
            if (this.itemArray.length === 0) {
              this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
