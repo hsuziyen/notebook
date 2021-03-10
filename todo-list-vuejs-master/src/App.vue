@@ -17,9 +17,9 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option v-for="item in itemArray" :value="item.label">{{ item.label }}</option>
+        <option v-for="item in itemArray">{{ item.label }}</option>
         </select>
-        搜尋過濾項目欄：<input type="text" id="search" v-model="search" placeholder="Search List filtering function ..">
+        搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
          <br>
           <span style="color: red">{{ errorMsg }}</span>
       	</ul>
@@ -90,16 +90,16 @@ import Store from './store';
   },
   components: {
     doFilter: function(prefix) {
-      this.itemArray = this.items.filter;
-         console.log('itemArray.length = ' + this.itemArray.length);
-           if (this.itemArray.length === 0) {
-             this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
-               this.itemArray = this.items;
-                 } else {
-                    this.errorMsg = '';
-                      }
-                 }
-            }    
+     this.itemArray = this.items.filter(item => item.label.startsWith(prefix));
+       console.log('itemArray.length = ' + this.itemArray.length);
+         if (this.itemArray.length === 0) {
+           this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
+             this.itemArray = this.items;
+           } else {
+              this.errorMsg = '';
+                }
+             }
+          }    
        }
 </script>
 
