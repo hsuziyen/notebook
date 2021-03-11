@@ -39,6 +39,7 @@ import Store from './store';
 class items {
   constructor(label) {
     this.label = label;
+    this.erroMsg = erroMsg;
   }
 }
  export default {
