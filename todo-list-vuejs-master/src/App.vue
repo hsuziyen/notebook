@@ -36,7 +36,11 @@
 
 import Store from './store';
 <script type="text/javascript">
-
+class items {
+  constructor(label) {
+    this.label = label;
+  }
+}
  export default {
   el: 'app',
   mounted() {
@@ -90,18 +94,18 @@ import Store from './store';
     }
   },
   components: {
-    doFilter: function(prefix) {
+    doFilter(prefix) {
       this.itemArray = this.items.filter(item => item.label.startsWith(prefix));
         console.log('itemArray.length = ' + this.itemArray.length);
           if (this.itemArray.length === 0) {
             this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
               this.itemArray = this.items;
-                } else {
-                   this.errorMsg = '';
-                     }
-                 }
-             }  
-         }
+          }     else {
+                  this.errorMsg = '';
+                    }
+                }
+           }
+       }
 </script>
 
 <style>
