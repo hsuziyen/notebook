@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="container">
-    <div class="well">
+    <div class="search-wrapper">
     <label>Enter todo items name page to filter</label>
     <h1 v-text="text"></h1>
      項目文字欄:<input type="text" v-model="newItem" v-on:keyup.enter="addNew" placeholder="Project text field" />
@@ -36,10 +36,9 @@
 
 import Store from './store';
 <script type="text/javascript">
-class items {
+class item {
   constructor(label) {
     this.label = label;
-    this.erroMsg = erroMsg;
   }
 }
  export default {
@@ -96,17 +95,17 @@ class items {
   },
   components: {
     doFilter: function(prefix) {
-       return this.itemArray = this.items.filter(item => item.label.startsWith(prefix));
-         console.log('itemArray.length = ' + this.itemArray.length);
-           if (this.itemArray.length === 0) {
-             this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
-               this.itemArray = this.items;
-                 } else {
+      return this.itemArray = this.items.filter(item => item.label.startsWith(prefix));
+        console.log('itemArray.length = ' + this.itemArray.length);
+          if (this.itemArray.length === 0) {
+            this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
+              this.itemArray = this.items;
+                } else {
                     this.errorMsg = '';
                       }
-                }
-            }     
-       }
+                  }
+             }     
+         }
 </script>
 
 <style>
