@@ -23,7 +23,7 @@
          <br>
           <span style="color: red">{{ errorMsg }}</span>
       	</ul>
-        Copyright @2020-2021 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
+         Copyright @2020-2021 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
     </div>
   </div>
