@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="container">
-    <div class="search-wrapper">
+    <div class="d-flex flex-wrap">
     <label>Enter todo items name page to filter</label>
     <h1 v-text="text"></h1>
      項目文字欄:<input type="text" v-model="newItem" v-on:keyup.enter="addNew" placeholder="Project text field" />
@@ -17,7 +17,7 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option class="card" v-for="item in itemArray" :value="item.label">{{ item.label }}</option>
+        <option class="box" v-for="item in itemArray" :value="item.label">{{ item.label }}</option>
         </select>
         搜尋過濾項目欄：<input type="text" id="search" v-model="search" placeholder="Search List filtering function ..">
          <br>
@@ -134,9 +134,14 @@ html, body {
   font-family: "微軟正黑體";
   text-shadow: 0 0 0px;
   color: #fff;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
 }
 .container {
   text-align: center;
+  margin: 10px;
 }
 input {
   box-shadow: 0 0 8px rgb(250, 204, 219);
@@ -215,8 +220,29 @@ button {
    flex-direction: column;
    align-items: center;
 }
+.box {
+    background-color: #1b64aa;
+    background-image: -webkit-gradient(
+      linear,
+      0% 0%,
+      0% 100%,
+      color-stop(25%, #004c73),
+      color-stop(75%, #0a1233)
+    );
+    border: 1px solid #00ffff;
+    border-radius: 5px;
+    position: relative;
+    padding: 2px;
+    margin: 10px;
+    width: 200px;
+    height: 108px;
+    overflow: hidden;
+}
  img {
     height: 100px;
+    vertical-align: middle;
+    max-width: 100%;
+    background-size: cover;
  }
  small {
         font-size: 10px;
