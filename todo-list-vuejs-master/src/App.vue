@@ -96,7 +96,7 @@ class item {
   components: {
     doFilter: function(prefix) {
       return this.itemArray = this.items.filter(item => item.label.startsWith(prefix));
-        console.log('itemArray.length = ' + this.itemArray.length).includes(this.search.toLowerCase(prefix));
+        console.log('itemArray.length = ' + this.itemArray.length);
           if (this.itemArray.length === 0) {
             this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
               this.itemArray = this.items;
