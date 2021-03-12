@@ -35,7 +35,7 @@
 -->
 
 import Store from './store';
-<script type="text/javascript">
+<script type="text/javascript"> 
 class item {
   constructor(label) {
     this.label = label;
