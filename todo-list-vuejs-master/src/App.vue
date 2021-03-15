@@ -70,8 +70,8 @@ class item {
         deep: true
      },
       search: function(value) {
-        this.doFilter(value);
         console.log('prefix = ' + value);
+           this.doFilter(value);
       }
   },
   methods: {
@@ -79,8 +79,8 @@ class item {
       item.isFinished = !item.isFinished;
     },
     addNew() {
-      if (this.newItem.trim() == '') {           
       return console.log('addNew');
+      if (this.newItem.trim() == '') {           
       }
       if (!this.items) {
         this.items = []
@@ -95,16 +95,16 @@ class item {
   components: {
     doFilter: function(prefix) {
       return this.itemArray = this.items.filter(item => item.label.startsWith(prefix));
-        if (this.itemArray.length === 0) {
-          this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
-            this.itemArray = this.items;
-              } else if(this.itemArray.length === 1) {
-                  this.errorMsg = '';
+        console.log('itemArray.length = ' + this.itemArray.length).includes.toLowerCase(this.search);
+          if (this.itemArray.length === 0) {
+            this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
+              this.itemArray = this.items;
+                } else {
+                    this.errorMsg = '';
+                      }
                     }
-                    console.log('itemArray.length = ' + this.itemArray.length).includes(this.search);
-               }
-           }     
-       }
+          }
+       }     
 </script>
 
 <style>
