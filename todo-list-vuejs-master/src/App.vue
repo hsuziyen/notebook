@@ -102,6 +102,7 @@ class item {
                 } else {
                     this.errorMsg = '';
                       }
+                      console.log(itemArray);
                     }
           }
        }     
