@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="container">
-    <div class="d-flex flex-wrap">
+    <div class="wraper">
     <label>Enter todo items name page to filter</label>
     <h1 v-text="text"></h1>
      項目文字欄:<input type="text" v-model="newItem" v-on:keyup.enter="addNew" placeholder="Project text field" />
@@ -17,7 +17,7 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option class="box" v-for="item in itemArray">{{ item.label }}</option>
+        <option class="card" v-for="item in itemArray">{{ item.label }}</option>
         </select>
         搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
          <br>
@@ -70,8 +70,8 @@ class item {
         deep: true
      },
       search: function(value) {
+        this.doFilter(value);
         console.log('prefix = ' + value);
-          this.doFilter(value);
       }
   },
   methods: {
@@ -79,9 +79,8 @@ class item {
       item.isFinished = !item.isFinished;
     },
     addNew() {
-      console.log('addNew')
       if (this.newItem.trim() == '') {           
-      return;
+      return console.log('addNew');
       }
       if (!this.items) {
         this.items = []
@@ -96,16 +95,16 @@ class item {
   components: {
     doFilter: function(prefix) {
       return this.itemArray = this.items.filter(item => item.label.startsWith(prefix));
-        console.log('itemArray.length = ' + this.itemArray.length).includes(this.search);
-          if (this.itemArray.length === 0) {
-            this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
-              this.itemArray = this.items;
-                } else {
-                    this.errorMsg = '';
-                      }
-                  }
-             }     
-         }
+        if (this.itemArray.length === 0) {
+          this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
+            this.itemArray = this.items;
+              } else if(this.itemArray.length === 1) {
+                  this.errorMsg = '';
+                    }
+                    console.log('itemArray.length = ' + this.itemArray.length).includes(this.search);
+               }
+           }     
+       }
 </script>
 
 <style>
