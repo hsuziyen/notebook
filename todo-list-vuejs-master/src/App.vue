@@ -17,11 +17,11 @@
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect">
-        <option class="card" v-for="item in itemArray" :value="item.label">{{ item.label }}</option>
+        <option class="card" v-for="item in itemArray">{{ item.label }}</option>
         </select>
         搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
          <br>
-          <span style="color: blue">{{ errorMsg }}</span>
+          <span style="color: red">{{ errorMsg }}</span>
       	</ul>
          Copyright @2020-2021 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
@@ -36,11 +36,7 @@
 
 import Store from './store';
 <script type="text/javascript"> 
-class item {
-  constructor(label) {
-    this.label = label;
-  }
-}
+
  export default {
   el: 'app',
   mounted() {
@@ -68,18 +64,18 @@ class item {
          this.hasData = this.items && this.items.length ? true : true;
       },
         deep: true
-     },
+      },
       search: function(value) {
         console.log('prefix = ' + value);
-           this.doFilter(value);
-      }
+          this.doFilter(value);
+     }
   },
   methods: {
     toggle(item) {
       item.isFinished = !item.isFinished;
     },
     addNew() {
-      return console.log('addNew');
+      console.log('addnew');
       if (this.newItem.trim() == '') {           
       }
       if (!this.items) {
@@ -94,7 +90,6 @@ class item {
   },
   components: {
     doFilter: function(prefix) {
-      var items=[];
         return this.itemArray = items.filter(item => item.label.startsWith(prefix));
           console.log('itemArray.length = ' + this.itemArray.length).includes(this.search);
             if (this.itemArray.length === 0) {
