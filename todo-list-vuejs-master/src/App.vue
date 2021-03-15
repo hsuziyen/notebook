@@ -19,9 +19,9 @@
         下拉選單欄：<select id="mySelect">
         <option class="card" v-for="item in itemArray">{{ item.label }}</option>
         </select>
-        搜尋過濾項目欄：<input type="text" v-model="search" v-color="blue" placeholder="Search List filtering function ..">
+        搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
          <br>
-          <span style="color: red">{{ errorMsg }}</span>
+          <span style="color: blue">{{ errorMsg }}</span>
       	</ul>
          Copyright @2020-2021 Hello Vue! Web Design By 中國科大實習生 ChihYen_Hsu製作
       </div>
@@ -94,7 +94,7 @@ class item {
   },
   components: {
     doFilter: function(prefix) {
-      return this.itemArray = this.items.filter(item => item.label.startsWith(prefix));
+      return this.itemArray = items.filter(item => item.label.startsWith(prefix));
         console.log('itemArray.length = ' + this.itemArray.length).includes.toLowerCase(this.search);
           if (this.itemArray.length === 0) {
             this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
