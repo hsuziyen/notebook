@@ -8,7 +8,7 @@
      修改title欄：<input type="text" v-model="text" v-on:keyup.enter="addNew" placeholder="Modify the title bar" />
       <button v-on:click="addNew">請按按鈕新增項目</button>
       <button v-on:click="addNew">請按按鈕查詢列表項目</button>
-      <button v-on:click="addNew">請按按鈕刪除全部項目</button>
+      <button v-on:click="del">請按按鈕刪除全部項目</button>
       <ul>
         <!-- v-for loop -->
         <li v-for="(item, index) in items">
@@ -20,6 +20,7 @@
         <option class="card" v-for="item in itemArray">{{ item.label }}</option>
         </select>
         搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
+         </a>
          <br>
           <span style="color: red">{{ errorMsg }}</span>
       	</ul>
