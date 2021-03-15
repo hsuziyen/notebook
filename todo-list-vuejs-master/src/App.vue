@@ -94,7 +94,7 @@ class item {
   },
   components: {
     doFilter: function(prefix) {
-      var items=[{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}];
+      var items=[];
         return this.itemArray = items.filter(item => item.label.startsWith(prefix));
           console.log('itemArray.length = ' + this.itemArray.length).includes(this.search);
             if (this.itemArray.length === 0) {
