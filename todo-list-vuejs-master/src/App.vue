@@ -94,16 +94,17 @@ class item {
   },
   components: {
     doFilter: function(prefix) {
-      return this.itemArray = items.filter(item => item.label.startsWith(prefix));
-        console.log('itemArray.length = ' + this.itemArray.length).includes.toLowerCase(this.search);
-          if (this.itemArray.length === 0) {
-            this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
-              this.itemArray = this.items;
-                } else {
-                    this.errorMsg = '';
-                      }
-                      console.log(itemArray);
-                    }
+      var items=[];
+        return this.itemArray = items.filter(item => item.label.startsWith(prefix));
+          console.log('itemArray.length = ' + this.itemArray.length).includes(this.search);
+            if (this.itemArray.length === 0) {
+              this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
+                this.itemArray = this.items;
+                  } else {
+                      this.errorMsg = '';
+                        }
+                        console.log(itemArray);
+                          }
           }
        }     
 </script>
