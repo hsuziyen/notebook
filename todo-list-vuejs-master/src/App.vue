@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="container">
-    <div class="wraper">
+    <div class="search-wraper">
     <label>Enter todo items name page to filter</label>
     <h1 v-text="text"></h1>
      項目文字欄:<input type="text" v-model="newItem" v-on:keyup.enter="addNew" placeholder="Project text field" />
