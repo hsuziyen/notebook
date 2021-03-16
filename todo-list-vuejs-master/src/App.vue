@@ -57,6 +57,8 @@ class item {
       search: '',
       filterArray: "",
       filterText: "",
+      firstname: "",
+      lastname: "",
       itemArray:[],
       newItem: '',
       hasData: true
@@ -91,6 +93,8 @@ class item {
     },
     del() {
       this.items = null;
+      this.firstname = "";
+      this.lastname = ""; 
     }
   },
   components: {
