@@ -91,10 +91,18 @@ class item {
       this.items.push({label: this.newItem, isFinished: true});
       this.newItem = '';
     },
+    save() {
+      this.$store.dispatch("insert", this.input);
+      },
+    load() {
+      this.$store.dispatch("query");
+      },
+    clear() {
+      this.input.firstname = "";
+      this.input.lastname = "";
+     },
     del() {
       this.items = null;
-      this.firstname = "";
-      this.lastname = ""; 
     }
   },
   components: {
