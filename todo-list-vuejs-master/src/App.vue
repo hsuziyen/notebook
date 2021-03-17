@@ -1,25 +1,25 @@
 <template>
   <div id="app">
-    <div class="container">
-    <div class="search-wraper">
+    <div class="page">
+    <div class="action-bar" title="Person" row="0" col="0"">
     <label>Enter todo items name page to filter</label>
-    <h1 v-text="text"></h1>
-     項目文字欄:<input type="text" v-model="newItem" v-on:keyup.enter="addNew" placeholder="Project text field" />
-     修改title欄：<input type="text" v-model="text" v-on:keyup.enter="addNew" placeholder="Modify the title bar" />
-      <button v-on:click="addNew">請按按鈕新增項目</button>
-      <button v-on:click="addNew">請按按鈕查詢列表項目</button>
-      <button v-on:click="del">請按按鈕刪除全部項目</button>
+    <h1 v-text="text" class="input-field"></h1>
+     項目文字欄:<input type="text" v-model="newItem" v-on:keyup.enter="addNew" placeholder="Project text field" class="label font-weight-bold m-b-5" />
+     修改title欄：<input type="text" v-model="text" v-on:keyup.enter="addNew" placeholder="Modify the title bar" class="label font-weight-bold m-b-5" />
+      <button v-on:click="addNew" @tap="addNew" class="btn btn-primary" row="0" col="0">請按按鈕新增項目</button>
+      <button v-on:click="addNew" @tap="addNew" class="btn btn-primary" row="0" col="1" >請按按鈕查詢列表項目</button>
+      <button v-on:click="del" @tap="del" class="btn btn-primary" row="1" col="0" colSpan="2">請按按鈕刪除全部項目</button>
       <ul>
         <!-- v-for loop -->
-        <li v-for="(item, index) in items">
+        <li v-for="(item, index) in items" class="hr-light">
           <span v-bind:class="{finished: item.isFinished}">{{ item.label }}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
-        下拉選單欄：<select id="mySelect">
-        <option class="card" v-for="item in itemArray">{{ item.label }}</option>
+        下拉選單欄：<select id="mySelect" rows="auto, auto" columns="*, *">
+        <option class="list-group-item" v-for="item in itemArray" row="1" col="0">{{ item.label }}</option>
         </select>
-        搜尋過濾項目欄：<input type="text" v-model="search" placeholder="Search List filtering function ..">
+        搜尋過濾項目欄：<input type="text" v-model="search" class="list-group-item" placeholder="Search List filtering function ..">
          </a>
          <br>
           <span style="color: red">{{ errorMsg }}</span>
@@ -58,8 +58,6 @@ class item {
       search: '',
       filterArray: "",
       filterText: "",
-      firstname: "",
-      lastname: "",
       itemArray:[],
       newItem: '',
       hasData: true
@@ -94,8 +92,6 @@ class item {
     },
     del() {
       this.items = null;
-      this.firstname = "";
-      this.lastname  = "";
     }
   },
   components: {
