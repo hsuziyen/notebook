@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="page">
+    <div class="container">
     <div class="action-bar" title="Person" row="0" col="0"">
     <label>Enter todo items name page to filter</label>
     <h1 v-text="text" class="input-field"></h1>
