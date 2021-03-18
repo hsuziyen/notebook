@@ -33,6 +33,7 @@
 <!-- this vuejs cdn link -->
 <!-- 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.12/vue.min.js"></script>
+<script src='js/sql.js'></script>
 -->
 
 import Store from './store';
