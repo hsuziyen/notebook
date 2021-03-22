@@ -46,7 +46,7 @@ class item {
 }
  export default {
   el: 'app',
-  name: 'hoge',
+  name: 'todo',
   mounted() {
      this.hasData = this.items && this.items.length ? true : true;
   },
