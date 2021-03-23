@@ -12,7 +12,7 @@
       <ul>
         <!-- v-for loop -->
         <li v-for="(item, index) in items" class="hr-light">
-          <span v-bind:class="{finished: item.isFinished}">{{ item.label }}</span>
+          <span v-bind:class="{finished: item.isFinished}">{{ item.SBU }}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
