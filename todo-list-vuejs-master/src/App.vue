@@ -12,12 +12,12 @@
       <ul>
         <!-- v-for loop -->
         <li v-for="(item, index) in items" class="hr-light">
-          <span v-bind:class="{finished: item.isFinished}">{{ item.SBU }}</span>
+          <span v-bind:class="{finished: item.isFinished}">{{ item.label }}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect" rows="auto, auto" columns="*, *">
-        <option class="list-group-item" v-for="item in itemArray" row="1" col="0">{{ item.SBU }}</option>
+        <option class="list-group-item" v-for="item in itemArray" row="1" col="0">{{ item.label }}</option>
         </select>
         搜尋過濾項目欄：<input type="text" v-model="search" class="list-group-item" placeholder="Search List filtering function ..">
          </a>
@@ -55,7 +55,7 @@ class item {
   data() {
     return {
       text: 'Hello Vue!',
-      items: [{SBU:'DMS'},{SBU:'ECD'},{SBU:'SPD'},{SBU:'IPC'},{SBU:'NSD'},{SBU:'RMD'}],
+      items: [{label:'101'},{label:'102'},{label:'103'},{label:'201'},{label:'202'},{label:'300'},{label:'aaa'},{label:'abc'},{label:'bbb'}],
       search: '',
       filterArray: "",
       filterText: "",
@@ -88,7 +88,7 @@ class item {
       if (!this.items) {
         this.items = []
       }
-      this.items.push({SBU: this.newItem, isFinished: true});
+      this.items.push({label: this.newItem, isFinished: true});
       this.newItem = '';
     },
     del() {
@@ -97,7 +97,7 @@ class item {
   },
   components: {
     doFilter: function(prefix) {
-        return this.itemArray = items.filter(item => item.SBU.startsWith(prefix));
+        return this.itemArray = items.filter(item => item.label.startsWith(prefix));
           console.log('itemArray.length = ' + this.itemArray.length).includes(this.search);
             if (this.itemArray.length === 0) {
               this.errorMsg = '找不到 ' + prefix + ' 開頭的資料';
