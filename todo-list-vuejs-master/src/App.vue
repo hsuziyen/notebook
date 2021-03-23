@@ -2,7 +2,7 @@
   <div id="app">
     <div class="container">
     <div class="form" title="Person"row="0" col="0">
-    <label>Enter todo items name page to filter and sqlite database(New Supported OS Listed)</label>
+    <label>Enter todo items name page to filter and sqlite database</label>
     <h1 v-text="text" class="input-field"></h1>
      項目文字欄:<input type="text" v-model="newItem" v-on:keyup.enter="addNew" placeholder="Project text field" class="label font-weight-bold m-b-5" />
      修改title欄：<input type="text" v-model="text" v-on:keyup.enter="addNew" placeholder="Modify the title bar" class="label font-weight-bold m-b-5" />
