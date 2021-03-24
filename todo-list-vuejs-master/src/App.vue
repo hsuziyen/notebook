@@ -12,12 +12,12 @@
       <ul>
         <!-- v-for loop -->
         <li v-for="(item, index) in items" class="hr-light">
-          <span v-bind:class="{finished: item.isFinished}">{{ item.label }}</span>
+          <span v-bind:class="{finished: item.isFinished}">{{item.label}}</span>
           <span v-on:click="toggle(item)" class="func first">{{!item.isFinished ? 'done' : 'todo'}}</span>
           <span v-on:click="items.splice(index, 1)"class="func">delete</span>
         </li>
         下拉選單欄：<select id="mySelect" rows="auto, auto" columns="*, *">
-        <option class="list-group-item" v-for="item in itemArray" row="1" col="0">{{ item.label }}</option>
+        <option class="list-group-item" v-for="item in itemArray" row="1" col="0">{{item.label}}</option>
         </select>
         搜尋過濾項目欄：<input type="text" v-model="search" class="list-group-item" placeholder="Search List filtering function ..">
          </a>
