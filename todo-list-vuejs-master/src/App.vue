@@ -6,9 +6,9 @@
     <h1 v-text="text" class="input-field"></h1>
      項目文字欄:<input type="text" v-model="newItem" v-on:keyup.enter="addNew" placeholder="Project text field" class="label font-weight-bold m-b-5" />
      修改title欄：<input type="text" v-model="text" v-on:keyup.enter="addNew" placeholder="Modify the title bar" class="label font-weight-bold m-b-5" />
-      <button v-on:click="addNew" @tap="addNew" class="form-control" row="0" col="0">請按按鈕新增項目</button>
+      <button v-on:click="addNew" @tap="addNew" class="btn btn-primary" row="0" col="0">請按按鈕新增項目</button>
       <button v-on:click="form-control" @tap="form-control" class="form-control" row="0" col="1" >請按按鈕查詢列表項目</button>
-      <button v-on:click="del" @tap="del" class="form-control" row="1" col="0" colSpan="2">請按按鈕刪除全部項目</button>
+      <button v-on:click="del" @tap="del" class="btn btn-primary" row="1" col="0" colSpan="2">請按按鈕刪除全部項目</button>
       <ul>
         <!-- v-for loop -->
         <li v-for="(item, index) in items" class="hr-light">
@@ -46,6 +46,7 @@ class item {
 }
  export default {
   el: 'app',
+  name: 'hoge',
   mounted() {
      this.hasData = this.items && this.items.length ? true : true;
   },
